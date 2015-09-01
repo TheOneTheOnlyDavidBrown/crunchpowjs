@@ -17,11 +17,13 @@ export class ExampleUser {
     console.log(this.data.user)
     console.log(this.data.programming_languages)
   }
-}```
+}
+```
 
 
 ## In your html
 ```
 <script>
   load_component('ExampleUser', {user: {name: 'Sherlock Holmes', address: '221b Baker Street'}, programming_languages: ['javascript', 'ruby']})
-</script>```
+</script>
+```
