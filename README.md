@@ -33,6 +33,10 @@ Or, more specifically in Rails/HAML you can pass in a user object such as @curre
 :javascript
   load_component('User', { user: JSON.parse("#{escape_javascript raw @current_user.to_json}"), programming_languages: ['javascript', 'ruby']})
 ```
-###Contributing
+
+## Compiling
+It is recommended you compile this with babel using the `--modules ignore` flag
+
+### Contributing
 
 Information about contributing can be found [here](https://github.com/TheOneTheOnlyDavidBrown/contributing_guidelines/blob/master/CONTRIBUTING.md) 
