@@ -25,13 +25,22 @@ export class ExampleUser {
 ## In your html
 ```
 <script>
-  load_component('ExampleUser', {user: {name: 'Sherlock Holmes', address: '221b Baker Street'}, programming_languages: ['javascript', 'ruby']})
+  load_component('ExampleUser', {
+    user: {
+      name: 'Sherlock Holmes',
+      address: '221b Baker Street'
+      },
+    programming_languages: ['javascript', 'ruby']
+  });
 </script>
 ```
 Or, more specifically in Rails/HAML you can pass in a user object such as @current_user
 ```
 :javascript
-  load_component('ExampleUser', { user: JSON.parse("#{escape_javascript raw @current_user.to_json}"), programming_languages: ['javascript', 'ruby']})
+  load_component('ExampleUser', { 
+    user: JSON.parse("#{escape_javascript raw @current_user.to_json}"),
+    programming_languages: ['javascript', 'ruby']
+  });
 ```
 
 ## Compiling
