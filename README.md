@@ -1,5 +1,5 @@
 # liaisonjs
-ES6/2015 library that allows for passing of view data to ES6/2015 modules. This is an alternative to storing data in HTML data attributes that clutter the DOM.
+ES6/2015 library that allows for passing of view data to ES6/2015 modules. This is an alternative to storing data in HTML data attributes that clutter the DOM. Also supports two way data binding
 
 This also stores the data within each module rather than the global namespace
 
@@ -10,7 +10,8 @@ import Liaison from './Liaison'
 
 export class ExampleUser {
   constructor(data) {
-    this.data = new Liaison(data)
+    this.data = new Liaison(data) // sets objects
+    new Binding(this.data) // sets data bindings
     this.anotherFunction()
   }
 
@@ -41,6 +42,13 @@ Or, more specifically in Rails/HAML you can pass in a user object such as @curre
     user: JSON.parse("#{escape_javascript raw @current_user.to_json}"),
     programming_languages: ['javascript', 'ruby']
   });
+```
+
+## Two way data binding
+To bind data use liaison-bind="variable_name" as such and it will bind to this.data.variable_name. In this example this.data.name is bound to these elements in the javascript
+```
+<div liaison-bind='name'></div>
+<input type="text" liaison-bind='name'></input>
 ```
 
 ## Compiling
