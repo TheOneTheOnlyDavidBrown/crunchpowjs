@@ -7,6 +7,7 @@ This also stores the data within each module rather than the global namespace
 ExampleUser.js
 ```
 import Liaison from './Liaison'
+import Binding from './Binding'
 
 export class ExampleUser {
   constructor(data) {
