@@ -1,8 +1,10 @@
 import Liaison from './Liaison'
+import Binding from './Binding'
 
 export class ExampleUser {
   constructor(data) {
     this.data = new Liaison(data)
+    new Binding(this.data)
     this.anotherFunction()
   }
 
