@@ -3,8 +3,8 @@ export class Binding {
     this.data = data
     this.findBindable()
 
+    // if Chrome (Object.observe is an ES7 property)
     if (Object.observe) {
-
       Object.observe(this.data, (changes) => {
         changes.forEach((change) => {
           let bindings = document.querySelectorAll('[liaison-bind=' + change.name + ']')
@@ -14,7 +14,7 @@ export class Binding {
         });
       });
       this.populateBindings()
-    } else {
+    } else { // Not chrome
       var currentData = currentData || {}
       setInterval(() => {
         if (JSON.stringify(currentData) !== JSON.stringify(this.data)) {
