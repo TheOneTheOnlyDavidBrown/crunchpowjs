@@ -7,29 +7,23 @@ export class Binding {
 
     setInterval(() => {
       if (JSON.stringify(currentData) !== JSON.stringify(this.data)) {
+        console.log(this.data)
         currentData = JSON.parse(JSON.stringify(this.data))
         this.populateBindings()
       }
-    }, 10)
+    }, 1000)
   }
 
   populateBindings() {
-    let elms = document.querySelectorAll('[liaison-bind]')
     // TODO get this working without having to run slice
-    elms = Array.prototype.slice.call(elms, 0)
-
-    for (let elm of elms){
+    for (let elm of Array.prototype.slice.call(document.querySelectorAll('[liaison-bind]'), 0)){
       this.setElementContent(elm, this.getValue(this.data, elm.getAttribute('liaison-bind')))
     }
   }
 
   findBindable() {
-    let elms = document.querySelectorAll('[liaison-bind]')
-
     // TODO get this working without having to run slice
-    elms = Array.prototype.slice.call(elms, 0)
-
-    for (let elm of elms) {
+    for (let elm of Array.prototype.slice.call(document.querySelectorAll('[liaison-bind]'), 0)) {
       elm.addEventListener('keyup', (e) => this.setValue(this.data, elm.getAttribute('liaison-bind'), e.currentTarget.value))
     }
   }
