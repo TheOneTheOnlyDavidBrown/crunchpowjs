@@ -11,7 +11,7 @@ export class Binding {
         currentData = JSON.parse(JSON.stringify(this.data))
         this.populateBindings()
       }
-    }, 1000)
+    }, 10)
   }
 
   populateBindings() {
@@ -55,7 +55,7 @@ export class Binding {
     if (access.length > 1) {
       return this.getValue(obj[access.shift()], access);
     } else {
-      return obj[access[0]]
+      return obj[access[0]] || ''
     }
   }
 }
