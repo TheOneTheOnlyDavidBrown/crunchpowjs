@@ -10,7 +10,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 
 var bases = {
- app: 'app/',
+ app: 'exampleApp/',
  dist: 'dist/',
 };
 
@@ -68,7 +68,7 @@ gulp.task('copy', ['clean'], function() {
  .pipe(gulp.dest(bases.dist + 'styles'));
 
  // Copy lib scripts, maintaining the original directory structure
- gulp.src(paths.libs, {cwd: 'app/**'})
+ gulp.src(paths.libs, {cwd: 'exampleApp/**'})
  .pipe(gulp.dest(bases.dist));
 
  // Copy extra html5bp files
@@ -79,7 +79,7 @@ gulp.task('copy', ['clean'], function() {
 
 // A development task to run anytime a file changes
 gulp.task('watch', function() {
- gulp.watch('app/**/*', ['scripts', 'copy']);
+ gulp.watch('exampleApp/**/*', ['scripts', 'copy']);
 });
 
 // Define the default task as a sequence of the above tasks
