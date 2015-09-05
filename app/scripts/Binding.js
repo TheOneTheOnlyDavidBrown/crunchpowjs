@@ -2,30 +2,15 @@ export class Binding {
   constructor(data) {
     this.data = data
     this.findBindable()
-    let me = this;
 
-    // if (Object.observe) {
-
-    //   Object.observe(this.data, (changes) => {
-    //     changes.forEach((change) => {
-    //       let bindings = document.querySelectorAll('[liaison-bind="' + change.name + '"]')
-    //       for (let j = 0; j < bindings.length; j++) {
-    //         this.setElementContent(bindings[j], change.object[change.name])
-    //       }
-    //       me.populateBindings()
-    //     });
-    //   });
-    //   this.populateBindings()
-    // } else {
     var currentData = currentData || {}
 
     setInterval(() => {
-        if (JSON.stringify(currentData) !== JSON.stringify(me.data)) {
-          currentData = JSON.parse(JSON.stringify(me.data))
-          me.populateBindings()
-        }
-      }, 100)
-      // }
+      if (JSON.stringify(currentData) !== JSON.stringify(this.data)) {
+        currentData = JSON.parse(JSON.stringify(this.data))
+        this.populateBindings()
+      }
+    }, 10)
   }
 
   populateBindings() {
@@ -49,29 +34,28 @@ export class Binding {
   }
 
   findBindable() {
-    var me = this;
     let elms = document.querySelectorAll('[liaison-bind]')
 
     // TODO get this working without having to run slice
     elms = Array.prototype.slice.call(elms, 0)
 
     for (let elm of elms) {
-      elm.addEventListener('keyup', function(e) {
+      elm.addEventListener('keyup', (e) => {
         let newVal = e.currentTarget.value;
 
         //deep update
         let el = elm.getAttribute('liaison-bind');
         if (el.indexOf('.') > 0) {
           //at deepest object set it to newVal
-          me.setValue(me.data, el, newVal);
+          this.setValue(this.data, el, newVal);
         } else {
-          me.data[el] = newVal
+          this.data[el] = newVal
           let bindings = document.querySelectorAll('[liaison-bind="' + this.getAttribute('liaison-bind') + '"]')
 
           // TODO get this working without having to run slice
           bindings = Array.prototype.slice.call(bindings, 0)
-          for (let binds of bindings) {
-            me.setElementContent(bind, newVal)
+          for (let bind of bindings) {
+            this.setElementContent(bind, newVal)
           }
         }
 
