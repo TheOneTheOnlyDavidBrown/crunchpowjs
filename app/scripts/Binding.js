@@ -44,21 +44,9 @@ export class Binding {
         let newVal = e.currentTarget.value;
 
         //deep update
-        let el = elm.getAttribute('liaison-bind');
-        if (el.indexOf('.') > 0) {
-          //at deepest object set it to newVal
-          this.setValue(this.data, el, newVal);
-        } else {
-          this.data[el] = newVal
-          let bindings = document.querySelectorAll('[liaison-bind="' + this.getAttribute('liaison-bind') + '"]')
-
-          // TODO get this working without having to run slice
-          bindings = Array.prototype.slice.call(bindings, 0)
-          for (let bind of bindings) {
-            this.setElementContent(bind, newVal)
-          }
-        }
-
+        let elms = elm.getAttribute('liaison-bind');
+        //at deepest object set it to newVal
+        this.setValue(this.data, elms, newVal);
       })
     }
   }
