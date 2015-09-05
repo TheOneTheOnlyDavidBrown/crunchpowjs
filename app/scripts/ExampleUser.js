@@ -3,7 +3,6 @@ import Binding from './Binding'
 
 export class ExampleUser {
   constructor(data) {
-    console.log('uo;eee')
     this.data = new Liaison(data)
     new Binding(this.data)
     this.anotherFunction()
