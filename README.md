@@ -4,12 +4,12 @@ ES6/2015 library that allows for passing of view data to ES6/2015 modules. This 
 This also stores the data within each module rather than the global namespace
 
 ## Example usage:
-ExampleUser.js
+Example.js
 ```
 import Liaison from './Liaison'
 import Binding from './Binding'
 
-export class ExampleUser {
+export class Example {
   constructor(data) {
     this.data = new Liaison(data) // sets objects
     new Binding(this.data) // sets data bindings
@@ -27,7 +27,7 @@ export class ExampleUser {
 ## In your html
 ```
 <script>
-  load_component('ExampleUser', {
+  load_component('Example', {
     user: {
       name: 'Sherlock Holmes',
       address: '221b Baker Street'
@@ -39,7 +39,7 @@ export class ExampleUser {
 Or, more specifically in Rails/HAML you can pass in a user object such as @current_user
 ```
 :javascript
-  load_component('ExampleUser', { 
+  load_component('Example', {
     user: JSON.parse("#{escape_javascript raw @current_user.to_json}"),
     programming_languages: ['javascript', 'ruby']
   });
@@ -57,4 +57,4 @@ It is recommended you compile this with babel using the `--modules ignore` flag
 
 ### Contributing
 
-Information about contributing can be found [here](https://github.com/TheOneTheOnlyDavidBrown/contributing_guidelines/blob/master/CONTRIBUTING.md) 
+Information about contributing can be found [here](https://github.com/TheOneTheOnlyDavidBrown/contributing_guidelines/blob/master/CONTRIBUTING.md)
