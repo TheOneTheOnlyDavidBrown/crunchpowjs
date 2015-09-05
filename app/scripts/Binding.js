@@ -1,3 +1,6 @@
+//allowing for..of of nodelists
+NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
+
 export class Binding {
   constructor(data) {
     this.data = data
@@ -7,7 +10,6 @@ export class Binding {
 
     setInterval(() => {
       if (JSON.stringify(currentData) !== JSON.stringify(this.data)) {
-        console.log(this.data)
         currentData = JSON.parse(JSON.stringify(this.data))
         this.populateBindings()
       }
@@ -15,15 +17,13 @@ export class Binding {
   }
 
   populateBindings() {
-    // TODO get this working without having to run slice
-    for (let elm of Array.prototype.slice.call(document.querySelectorAll('[liaison-bind]'), 0)){
+    for (let elm of document.querySelectorAll('[liaison-bind]')){
       this.setElementContent(elm, this.getValue(this.data, elm.getAttribute('liaison-bind')))
     }
   }
 
   findBindable() {
-    // TODO get this working without having to run slice
-    for (let elm of Array.prototype.slice.call(document.querySelectorAll('[liaison-bind]'), 0)) {
+    for (let elm of document.querySelectorAll('[liaison-bind]')){
       elm.addEventListener('keyup', (e) => this.setValue(this.data, elm.getAttribute('liaison-bind'), e.currentTarget.value))
     }
   }
