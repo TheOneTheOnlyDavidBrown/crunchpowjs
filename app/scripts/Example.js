@@ -1,7 +1,7 @@
 import Liaison from './Liaison'
 import Binding from './Binding'
 
-export class ExampleUser {
+export class Example {
   constructor(data) {
     this.data = new Liaison(data)
     new Binding(this.data)
