@@ -1,11 +1,11 @@
 import Liaison from './Liaison'
 import Binding from './Binding'
 
-export class Example {
+export default class Example {
   constructor(data) {
     this.data = new Liaison(data)
     new Binding(this.data)
-    this.anotherFunction()
+    // this.anotherFunction()
   }
 
   anotherFunction() {

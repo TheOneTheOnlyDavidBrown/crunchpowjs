@@ -1,4 +1,4 @@
-export class Liaison {
+export default class Liaison {
   constructor(data) {
     var datum
     for (datum in data) {
@@ -6,6 +6,6 @@ export class Liaison {
     }
   }
 }
-export function load_component(module, data) {
+export default function load_component(module, data) {
   new window[module](data);
 }

@@ -1,7 +1,7 @@
 //allowing for..of of nodelists for Chrome support
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 
-export class Binding {
+export default class Binding {
   constructor(data) {
     this.data = data
     this.findBindable()
