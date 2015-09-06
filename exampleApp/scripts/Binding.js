@@ -32,13 +32,14 @@ export class Binding {
 
   findBindable() {
     for (let elm of document.querySelectorAll('[liaison-bind]')){
-      elm.addEventListener('keyup', (e) => {
+      elm.addEventListener('keydown', (e) => {
         this.setValue(this.data, elm.getAttribute('liaison-bind'), e.currentTarget.value)
       })
     }
   }
 
   setElementContent(element, value) {
+    if (!value) return
     element.innerHTML = value
     element.value = value
   }
@@ -47,10 +48,10 @@ export class Binding {
     if (typeof(access) == 'string') {
       access = access.split('.')
     }
-    if (access.length > 1) {
+    if (access.length > 1 && obj[access[0]]) {
       this.setValue(obj[access.shift()], access, value);
-    } else {
-      obj[access[0]] = value;
+    } else if (obj[access[0]]) {
+      obj[access[0]] = value
     }
   }
 
@@ -58,7 +59,7 @@ export class Binding {
     if (typeof(access) == 'string') {
       access = access.split('.')
     }
-    if (access.length > 1) {
+    if (access.length > 1 && obj[access[0]]) {
       return this.getValue(obj[access.shift()], access);
     } else {
       return obj[access[0]] || ''
