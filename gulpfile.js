@@ -7,6 +7,7 @@ var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
+var eslint = require('gulp-eslint');
 var browserSync = require('browser-sync').create();
 
 var bases = {
@@ -26,11 +27,11 @@ var paths = {
 
 // Static server
 gulp.task('browser-sync', function() {
-    browserSync.init({
-        server: {
-            baseDir: "dist"
-        }
-    });
+  browserSync.init({
+    server: {
+      baseDir: "dist"
+    }
+  });
 });
 
 // Delete the dist directory
@@ -42,6 +43,8 @@ gulp.task('clean', function() {
 // Process scripts and concatenate them into one output file
 gulp.task('scripts', ['clean'], function() {
  gulp.src(paths.scripts, {cwd: bases.app})
+ .pipe(eslint())
+ .pipe(eslint.format())
  .pipe(sourcemaps.init())
  .pipe(babel({modules:'ignore'}))
  .pipe(uglify())
