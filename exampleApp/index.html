@@ -4,6 +4,8 @@
   <title>LiaisonJS</title>
 </head>
 <body>
+  <h3>Bindings from first component</h3>
+
   <div liaison-bind="single"></div>
   <input type="text" liaison-bind="single" name="" value="" placeholder="">
   <br><br>
@@ -16,7 +18,8 @@
   <input type="text" liaison-bind="user.address" name="" value="" placeholder="">
   <div liaison-bind="user.address"></div>
 
-  <br><br>
+  <br>
+  <h3>Bindings from second component</h3>
   <input type="text" liaison-bind="string" name="" value="" placeholder="">
   <div liaison-bind="string"></div>
   <input type="text" liaison-bind="deep.objectstr" name="" value="" placeholder="">
@@ -27,7 +30,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     load_component('Example', {
-      single: 'string',
+      single: 'some text',
       user: {
         name: 'Sherlock Holmes',
         address: '221b Baker Street'
@@ -35,7 +38,7 @@
       programming_languages: ['javascript', 'ruby']
     });
     load_component('Example2', {
-      string: '2string',
+      string: 'some text in example2',
       deep: {
         objectstr: 'item'
       }
