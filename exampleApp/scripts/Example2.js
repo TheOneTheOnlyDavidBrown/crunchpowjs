@@ -4,7 +4,7 @@ import Binding from './Binding'
 export class Example2 {
   constructor(data) {
     this.data = new Liaison(data)
-    let b = new Binding(this.data)
+    new Binding(this.data)
     // this.anotherFunction()
   }
 
