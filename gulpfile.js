@@ -9,6 +9,7 @@ var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
 var eslint = require('gulp-eslint');
 var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
 
 var bases = {
  app: 'exampleApp/',
@@ -50,7 +51,8 @@ gulp.task('scripts', ['clean'], function() {
  .pipe(uglify())
  .pipe(sourcemaps.write())
  .pipe(concat('app.min.js'))
- .pipe(gulp.dest(bases.dist + 'scripts/'));
+ .pipe(gulp.dest(bases.dist + 'scripts/'))
+ .pipe(reload({stream:true}));
 });
 
 // Imagemin images and ouput them in dist
@@ -76,8 +78,7 @@ gulp.task('copy', ['clean'], function() {
 
  // Copy extra html5bp files
  gulp.src(paths.extras, {cwd: bases.app})
- .pipe(gulp.dest(bases.dist));
- browserSync.reload();
+ .pipe(gulp.dest(bases.dist))
 });
 
 // A development task to run anytime a file changes
