@@ -53,5 +53,6 @@ export default class Example {
     //sets data binding
     this.bind.single = viewmodel.get('single')
     this.bind.user.name = viewmodel.get('user.name')
+    console.log(viewmodel.get())
   }
 }

@@ -26,9 +26,7 @@ export class BaseModel{
       return this.getValue(this.data, access)
     }
     else {
-      // TODO: traverse and only return values of each. not {type, value}
-      console.log('broken, shouldnt see this text')
-      return this.data
+      return this.getData(this.data)
     }
   }
 
@@ -54,6 +52,19 @@ export class BaseModel{
     } else {
       return obj[access[0]].type === typeof value
     }
+  }
+
+  getData(obj, newObj = {}) {
+    for(let element in obj){
+      if (obj[element].type === 'object') {
+        newObj[element] = {}
+        this.getData(obj[element].value, newObj[element])
+      }
+      else{
+        newObj[element] = obj[element].value
+      }
+    }
+    return newObj
   }
 
   setValue(obj, access, value) {
