@@ -1,6 +1,6 @@
 // TODO: import json to use as schema
 
-export class BaseModel{
+export default class BaseModel{
   constructor(modelName, schema){
     this.modelName = modelName
     this.data = schema
@@ -14,11 +14,11 @@ export class BaseModel{
         this.setValue(this.data, key, value)
       }
       else {
-        console.log(`Not setting "${key}" in ${this.modelName} model to "${value}" because it it isnt the right type`)
+        console.warn(`Not setting "${key}" in ${this.modelName} model to "${value}" because it it isnt the right type`)
       }
     }
     else {
-      console.log(`Not setting "${key}" in ${this.modelName} model to "${value}" because it doesnt exist in the schema`)
+      console.warn(`Not setting "${key}" in ${this.modelName} model to "${value}" because it doesnt exist in the schema`)
     }
   }
 
