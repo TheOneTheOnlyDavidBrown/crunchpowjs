@@ -1,7 +1,8 @@
 // TODO: import json to use as schema
 
 export class BaseModel{
-  constructor(schema){
+  constructor(modelName, schema){
+    this.modelName = modelName
     this.data = schema
   }
 
@@ -90,8 +91,21 @@ export class BaseModel{
     }
   }
 
-  // TODO: CRUD operations xhr calls
-  // save()
-  // delete()
-  // update()
+  // TODO: CRUD operations xhr calls. return promises
+  save(id = this.get('id')){
+    let sendObj = {}
+    sendObj[this.modelName] = this.get()
+    console.log(`make post xhr call to api/v1/${this.modelName}/${id}`, sendObj)
+  }
+  fetch(id = this.get('id')){
+    console.log(`make get xhr call to api/v1/${this.modelName}/${id}`)
+  }
+  update(id = this.get('id')){
+    let sendObj = {}
+    sendObj[this.modelName] = this.get()
+    console.log(`make update xhr call to api/v1/${this.modelName}/${id}`, sendObj)
+  }
+  destroy(id = this.get('id')){
+    console.log(`make delete xhr call to api/v1/${this.modelName}/${id}`)
+  }
 }
