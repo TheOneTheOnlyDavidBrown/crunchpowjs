@@ -66,4 +66,9 @@ export default class Binding {
       return obj[access[0]] || ''
     }
   }
+
+  refresh(data){
+    this.data = data
+    this.populateBindings()
+  }
 }

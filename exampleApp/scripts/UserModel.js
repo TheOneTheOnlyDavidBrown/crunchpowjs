@@ -9,4 +9,9 @@ export class UserModel extends BaseModel {
       age: {value: null, type: 'number'}
     })
   }
+
+  //example model helper
+  upCase(str){
+    return str.toUpperCase()
+  }
 }

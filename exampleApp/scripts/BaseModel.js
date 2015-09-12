@@ -13,12 +13,12 @@ export class BaseModel{
       if (typeMatches) {
         this.setValue(this.data, key, value)
       }
-      else{
-        console.log(`Not setting ${key} to ${value} because it it isnt the right type`)
+      else {
+        console.log(`Not setting "${key}" in ${this.modelName} model to "${value}" because it it isnt the right type`)
       }
     }
-    else{
-      console.log(`Not setting ${key} to ${value} because it doesnt exist in the schema`)
+    else {
+      console.log(`Not setting "${key}" in ${this.modelName} model to "${value}" because it doesnt exist in the schema`)
     }
   }
 
@@ -56,12 +56,12 @@ export class BaseModel{
   }
 
   getData(obj, newObj = {}) {
-    for(let element in obj){
+    for(let element in obj) {
       if (obj[element].type === 'object') {
         newObj[element] = {}
         this.getData(obj[element].value, newObj[element])
       }
-      else{
+      else {
         newObj[element] = obj[element].value
       }
     }
