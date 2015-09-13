@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LiaisonJS</title>
+</head>
+<body>
+  <h3>Bindings from first component</h3>
+
+  <div liaison-bind="single"></div>
+  <input type="text" liaison-bind="single" name="" value="" placeholder="">
+  <br><br>
+  <input type="text" liaison-bind="user.name" name="" value="" placeholder="">
+  <input type="text" liaison-bind="user.name" name="" value="" placeholder="">
+  <div liaison-bind="user.name"></div>
+  <div liaison-bind="user.name"></div>
+  <br><br>
+  <input type="text" liaison-bind="user.address" name="" value="" placeholder="">
+  <input type="text" liaison-bind="user.address" name="" value="" placeholder="">
+  <div liaison-bind="user.address"></div>
+
+  <br>
+  <h3>Bindings from second component</h3>
+  <input type="text" liaison-bind="string" name="" value="" placeholder="">
+  <div liaison-bind="string"></div>
+  <input type="text" liaison-bind="deep.objectstr" name="" value="" placeholder="">
+  <div liaison-bind="deep.objectstr"></div>
+</body>
+
+<script src="/scripts/app.min.src.js" type="text/javascript" charset="utf-8"></script>
+<script src="/scripts/app.min.example.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    load_component('Example', {
+      single: 'some text',
+      user: {
+        name: 'Sherlock Holmes',
+        address: '221b Baker Street'
+        },
+      programming_languages: ['javascript', 'ruby']
+    });
+    load_component('Example2', {
+      string: 'some text in example2',
+      deep: {
+        objectstr: 'item'
+      }
+    });
+  });
+</script>
+</html>
