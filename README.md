@@ -90,7 +90,7 @@ Working on using setters and getters to see if its cleaner.
 Then you can put helper functions in your model class (eg getFullName that returns first+last name). Working on utilizing an XHR library to handle fetching/updating/deleting model data.
 
 ## Running Tests
-`npm test` will run the Chia tests
+`npm test` will run the Mocha tests
 
 ## Compiling
 It is recommended you compile this with babel using the `--modules ignore` flag
