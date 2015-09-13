@@ -3,8 +3,6 @@ ES6/2015 library that allows for passing of view data to ES6/2015 modules. This 
 
 Each module can be run independent of the rest of the modules. Data is stored within each module rather than the global namespace.
 
-[Demo (no styles, yet)](http://theonetheonlydavidbrown.github.io/liaisonjs/dist/)
-
 ## Example usage:
 Example.js
 ```
