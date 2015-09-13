@@ -12,13 +12,14 @@ var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 
 var bases = {
- app: 'exampleApp/',
+ app: 'example',
  dist: 'dist/',
 };
 
 var paths = {
- scripts: ['scripts/**/*.js', '!scripts/libs/**/*.js'],
- libs: ['scripts/libs/jquery/dist/jquery.js', 'scripts/libs/underscore/underscore.js', 'scripts/backbone/backbone.js'],
+ scripts: ['**/*.js'],
+ src: ['**/*.js'],
+ libs: ['libs/**/*.js'],
  styles: ['styles/**/*.css'],
  html: ['index.html', '404.html'],
  images: ['images/**/*.png'],
@@ -43,14 +44,24 @@ gulp.task('clean', function() {
 
 // Process scripts and concatenate them into one output file
 gulp.task('scripts', ['clean'], function() {
- gulp.src(paths.scripts, {cwd: bases.app})
+ gulp.src(paths.scripts, {cwd: 'example'})
  .pipe(eslint())
  .pipe(eslint.format())
  .pipe(sourcemaps.init())
  .pipe(babel({modules:'ignore'}))
- .pipe(uglify())
  .pipe(sourcemaps.write())
- .pipe(concat('app.min.js'))
+ .pipe(concat('app.min.example.js'))
+ .pipe(uglify())
+ .pipe(gulp.dest(bases.dist + 'scripts/'))
+ .pipe(reload({stream:true}));
+gulp.src(paths.src, {cwd: 'src'})
+ .pipe(eslint())
+ .pipe(eslint.format())
+ .pipe(sourcemaps.init())
+ .pipe(babel({modules:'ignore'}))
+ .pipe(sourcemaps.write())
+ .pipe(concat('app.min.src.js'))
+ .pipe(uglify())
  .pipe(gulp.dest(bases.dist + 'scripts/'))
  .pipe(reload({stream:true}));
 });
@@ -73,7 +84,7 @@ gulp.task('copy', ['clean'], function() {
  .pipe(gulp.dest(bases.dist + 'styles'));
 
  // Copy lib scripts, maintaining the original directory structure
- gulp.src(paths.libs, {cwd: 'exampleApp/**'})
+ gulp.src(paths.libs, {cwd: '/'})
  .pipe(gulp.dest(bases.dist));
 
  // Copy extra html5bp files
@@ -83,7 +94,7 @@ gulp.task('copy', ['clean'], function() {
 
 // A development task to run anytime a file changes
 gulp.task('watch', function() {
- gulp.watch('exampleApp/**/*', ['scripts', 'copy']);
+ gulp.watch(['src/**/*', 'example/**/*'], ['scripts', 'copy']);
 });
 
 // Define the default task as a sequence of the above tasks

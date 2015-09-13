@@ -5,7 +5,7 @@
 let chai = require('chai'),
     path = require('path'),
     expect = chai.expect,
-    BaseModel = require(path.join(__dirname, '..', 'exampleApp/scripts/BaseModel'));
+    BaseModel = require(path.join(__dirname, '..', 'src/BaseModel'));
 
 // Set up Chai matchers
 chai.should();
