@@ -18,8 +18,7 @@ var bases = {
 };
 
 var paths = {
- scripts: ['**/*.js'],
- src: ['**/*.js'],
+ scripts: ['src/**/*.js', 'example/**/*.js'],
  libs: ['libs/**/*.js'],
  styles: ['styles/**/*.scss'],
  html: ['index.html', '404.html'],
@@ -45,23 +44,13 @@ gulp.task('clean', function() {
 
 // Process scripts and concatenate them into one output file
 gulp.task('scripts', ['clean'], function() {
- gulp.src(paths.scripts, {cwd: 'example'})
+ gulp.src(paths.scripts, {cwd: '.'})
  .pipe(eslint())
  .pipe(eslint.format())
  .pipe(sourcemaps.init())
  .pipe(babel({modules:'ignore'}))
  .pipe(sourcemaps.write())
- .pipe(concat('app.min.example.js'))
- .pipe(uglify())
- .pipe(gulp.dest(bases.dist + 'scripts/'))
- .pipe(reload({stream:true}));
-gulp.src(paths.src, {cwd: 'src'})
- .pipe(eslint())
- .pipe(eslint.format())
- .pipe(sourcemaps.init())
- .pipe(babel({modules:'ignore'}))
- .pipe(sourcemaps.write())
- .pipe(concat('app.min.src.js'))
+ .pipe(concat('app.min.js'))
  .pipe(uglify())
  .pipe(gulp.dest(bases.dist + 'scripts/'))
  .pipe(reload({stream:true}));
@@ -84,10 +73,6 @@ gulp.task('copy', ['clean'], function() {
  gulp.src(paths.styles, {cwd: bases.app})
  .pipe(sass().on('error', sass.logError))
  .pipe(gulp.dest(bases.dist + 'styles'));
-
- // Copy lib scripts, maintaining the original directory structure
- gulp.src(paths.libs, {cwd: '/'})
- .pipe(gulp.dest(bases.dist));
 
  // Copy extra html5bp files
  gulp.src(paths.extras, {cwd: bases.app})

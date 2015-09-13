@@ -5,7 +5,7 @@ export default class Example2 {
   constructor(data) {
     this.bind = new Liaison(data)
     new Binding(this.bind)
-    // this.anotherFunction()
+      // this.anotherFunction()
   }
 
   anotherFunction() {

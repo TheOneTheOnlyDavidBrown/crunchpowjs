@@ -1,4 +1,3 @@
-'use strict';
 // import UserModel from '../exampleApp/scripts/UserModel'
 
 // Import modules
