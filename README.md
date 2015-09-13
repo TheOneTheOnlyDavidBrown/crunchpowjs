@@ -1,7 +1,7 @@
 # liaisonjs
-ES6/2015 library that allows for passing of view data to ES6/2015 modules. This is an alternative to storing data in HTML data attributes that clutter the DOM. Supports two way data binding and has a base model class for persistent data structures
+ES6/2015 library that allows for passing of view data to ES6/2015 modules. This is an alternative to storing data in HTML data attributes that clutter the DOM. Supports two way data binding and has a base model class for persistent data structures.
 
-This also stores the data within each module rather than the global namespace
+Each module can be run independent of the rest of the modules. Data is stored within each module rather than the global namespace.
 
 ## Example usage:
 Example.js
