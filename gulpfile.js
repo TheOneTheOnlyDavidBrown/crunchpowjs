@@ -10,6 +10,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var eslint = require('gulp-eslint');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
+var sass = require('gulp-sass');
 
 var bases = {
  app: 'example',
@@ -20,7 +21,7 @@ var paths = {
  scripts: ['**/*.js'],
  src: ['**/*.js'],
  libs: ['libs/**/*.js'],
- styles: ['styles/**/*.css'],
+ styles: ['styles/**/*.scss'],
  html: ['index.html', '404.html'],
  images: ['images/**/*.png'],
  extras: ['crossdomain.xml', 'humans.txt', 'manifest.appcache', 'robots.txt', 'favicon.ico'],
@@ -81,6 +82,7 @@ gulp.task('copy', ['clean'], function() {
 
  // Copy styles
  gulp.src(paths.styles, {cwd: bases.app})
+ .pipe(sass().on('error', sass.logError))
  .pipe(gulp.dest(bases.dist + 'styles'));
 
  // Copy lib scripts, maintaining the original directory structure
