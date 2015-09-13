@@ -11,15 +11,15 @@ import Binding from './Binding'
 
 export class Example {
   constructor(data) {
-    this.data = new Liaison(data) // sets objects
-    new Binding(this.data) // sets data bindings
+    this.bind = new Liaison(data) // sets objects
+    this.binding = new Binding(this.bind) // sets data bindings
     this.anotherFunction()
   }
 
   anotherFunction() {
-    // here you have access to this.data.user and this.data.programming_languages
-    console.log(this.data.user)
-    console.log(this.data.programming_languages)
+    // here you have access to this.bind.user and this.bind.programming_languages
+    console.log(this.bind.user)
+    console.log(this.bind.programming_languages)
   }
 }
 ```
@@ -88,6 +88,9 @@ myModel.get() // no params returns the whole model
 Working on using setters and getters to see if its cleaner.
 
 Then you can put helper functions in your model class (eg getFullName that returns first+last name). Working on utilizing an XHR library to handle fetching/updating/deleting model data.
+
+When using BaseModel with data binding you may need to force refresh your bindings with the refresh function on the Binding class if you are updating the root of the data binding object (eg `this.data`) by running:
+`this.binding.refresh(this.bind)`
 
 ## Running Tests
 `npm test` will run the Mocha tests
