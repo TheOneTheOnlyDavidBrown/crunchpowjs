@@ -89,7 +89,7 @@ Working on using setters and getters to see if its cleaner.
 
 Then you can put helper functions in your model class (eg getFullName that returns first+last name). Working on utilizing an XHR library to handle fetching/updating/deleting model data.
 
-When using BaseModel with data binding you may need to force refresh your bindings with the refresh function on the Binding class if you are updating the root of the data binding object (eg `this.data`) by running:
+When using BaseModel with data binding you may need to force refresh your bindings with the refresh function on the Binding class if you are updating the root of the data binding object (eg `this.bind`) by running:
 `this.binding.refresh(this.bind)`
 
 ## Running Tests
