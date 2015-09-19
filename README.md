@@ -85,7 +85,7 @@ myModel.set('doesnt_exist_in_schema','value') // wont add it to the model
 myModel.set('user.id',{}) // wont set it in the model because its not the correct type
 myModel.get() // no params returns the whole model
 ```
-Working on using setters and getters to see if its cleaner.
+Working on using setters and getters to see if it's cleaner.
 
 Then you can put helper functions in your model class (eg getFullName that returns first+last name). Working on utilizing an XHR library to handle fetching/updating/deleting model data.
 
