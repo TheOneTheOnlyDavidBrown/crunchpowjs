@@ -28,6 +28,6 @@ export class ViewModel extends BaseModel {
         type: 'array',
         value: ['javascript', 'ruby']
       }
-    })
+    });
   }
 }

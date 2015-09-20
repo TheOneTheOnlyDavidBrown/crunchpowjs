@@ -1,6 +1,6 @@
 export default class Liaison {
   constructor(data) {
-    var datum
+    let datum;
     for (datum in data) {
       this[datum] = data[datum];
     }
