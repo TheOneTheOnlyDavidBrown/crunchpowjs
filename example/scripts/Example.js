@@ -30,9 +30,10 @@ export default class Example {
     // this.bind.user.name = user.get('name')
     user.set('address', user.upCase('my second address')) //should pass and postfix "!" to the address
 
-    // user.save()
-    // user.update()
-    // user.destroy()
+    user.save()
+    user.update()
+    user.fetch()
+    user.destroy()
 
     // second model
     let viewmodel = new ViewModel()

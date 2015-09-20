@@ -75,21 +75,33 @@ export default class BaseModel {
     }
   }
 
+  set endpointPrefix(prefix){
+    this._endpointPrefix = prefix
+  }
+
+  get endpointPrefix(){
+    return this._endpointPrefix || 'api/vi'
+  }
+
   // TODO: CRUD operations xhr calls. return promises
   save(id = this.get('id')) {
+    let url = `${this.endpointPrefix}/${this.modelName}/${id}`
     let sendObj = {}
     sendObj[this.modelName] = this.get()
-    console.log(`make post xhr call to api/v1/${this.modelName}/${id}`, sendObj)
+    console.log(`make post xhr call to ${url}`, sendObj)
   }
   fetch(id = this.get('id')) {
-    console.log(`make get xhr call to api/v1/${this.modelName}/${id}`)
+    let url = `${this.endpointPrefix}/${this.modelName}/${id}`
+    console.log(`make get xhr call to ${url}`)
   }
   update(id = this.get('id')) {
+    let url = `${this.endpointPrefix}/${this.modelName}/${id}`
     let sendObj = {}
     sendObj[this.modelName] = this.get()
-    console.log(`make update xhr call to api/v1/${this.modelName}/${id}`, sendObj)
+    console.log(`make update xhr call to ${url}`, sendObj)
   }
   destroy(id = this.get('id')) {
-    console.log(`make delete xhr call to api/v1/${this.modelName}/${id}`)
+    let url = `${this.endpointPrefix}/${this.modelName}/${id}`
+    console.log(`make delete xhr call to ${url}`)
   }
 }
