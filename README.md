@@ -46,7 +46,7 @@ Or, more specifically in Rails/HAML you can pass in a user object such as @curre
 ```
 
 ## Two way data binding
-To bind data use `liaison-bind="variable_name"` as such and it will bind to `this.data.variable_name`. In this example `this.data.name` is bound to these elements in the javascript
+Following the example above, to bind data use `liaison-bind="variable_name"` as such and it will bind to `this.bind.variable_name`. In this example `this.bind.name` is bound to these elements in the javascript
 ```
 <div liaison-bind='name'></div>
 <input type="text" liaison-bind='name'></input>
