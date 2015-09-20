@@ -11,15 +11,15 @@ import Binding from './Binding'
 
 export class Example {
   constructor(data) {
-    this.bind = new Liaison(data) // sets objects
-    this.binding = new Binding(this.bind) // sets data bindings
-    this.anotherFunction()
+    this.bind = new Liaison(data); // sets objects
+    this.binding = new Binding(this.bind); // sets data bindings
+    this.anotherFunction();
   }
 
   anotherFunction() {
     // here you have access to this.bind.user and this.bind.programming_languages
-    console.log(this.bind.user)
-    console.log(this.bind.programming_languages)
+    console.log(this.bind.user);
+    console.log(this.bind.programming_languages);
   }
 }
 ```
@@ -71,19 +71,19 @@ export class ViewModel extends BaseModel {
         },
       },
       programming_languages: {type:'array', value: ['javascript', 'ruby']}
-    })
+    });
   }
 }
 ```
 
 To use this one would run the following code:
 ```
-let myModel = new ViewModel()
-myModel.set('user.name', 'new name')
-myModel.get('user.name') // returns the user's name
-myModel.set('doesnt_exist_in_schema','value') // wont add it to the model
-myModel.set('user.id',{}) // wont set it in the model because its not the correct type
-myModel.get() // no params returns the whole model
+let myModel = new ViewModel();
+myModel.set('user.name', 'new name');
+myModel.get('user.name'); // returns the user's name
+myModel.set('doesnt_exist_in_schema','value'); // wont add it to the model
+myModel.set('user.id',{}); // wont set it in the model because its not the correct type
+myModel.get(); // no params returns the whole model
 ```
 Working on using setters and getters to see if it's cleaner.
 
