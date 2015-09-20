@@ -19,11 +19,11 @@ export class UserModel extends BaseModel {
         value: null,
         type: 'number'
       }
-    })
+    });
   }
 
   //example model helper
   upCase(str) {
-    return str.toUpperCase()
+    return str.toUpperCase();
   }
 }
