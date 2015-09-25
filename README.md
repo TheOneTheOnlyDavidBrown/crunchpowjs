@@ -36,7 +36,7 @@ export class Example {
   });
 </script>
 ```
-Or, more specifically in Rails/HAML you can pass in a user object such as @current_user
+Or, more specifically in Rails/HAML you can pass in a user object such as @current_user. If you know of a better way to format the data to pass it in that is cleaner, please put up a PR. I would greatly appreciate it.
 ```
 :javascript
   load_component('Example', {
