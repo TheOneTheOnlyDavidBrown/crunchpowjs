@@ -1,0 +1,28 @@
+{
+  "name": "liaisonjs",
+  "version": "0.0.0",
+  "homepage": "https://github.com/TheOneTheOnlyDavidBrown/liaisonjs",
+  "authors": [
+    "David Brown <dbrown@gmail.com>"
+  ],
+  "description": "ES6/2015 library that allows for passing of view data to ES6/2015 modules with two way data binding and model validation against a schema",
+  "main": "src/Liaison.js",
+  "moduleType": [
+    "es6"
+  ],
+  "keywords": [
+    "es6",
+    "data-binding",
+    "model",
+    "component",
+    "loading"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
