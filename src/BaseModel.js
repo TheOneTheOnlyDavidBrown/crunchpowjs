@@ -1,4 +1,4 @@
-// TODO: import json to use as schema
+// TODO: allow a shared frontend/backend schema file
 export default class BaseModel {
   constructor(modelName, schema) {
     this.modelName = modelName;
