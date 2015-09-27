@@ -19,33 +19,33 @@ export default class Example {
 
     //model examples
     let user = new UserModel();
-    // user.set('age', '8777'); // should fail
-    // user.set('name', 'my first name on user model'); //should pass
-    // user.set('age', {
-    //   age: 33
-    // }); // should fail
-    // user.set('age', 999); //should pass
-    // user.set('address', 'my address'); //should pass
+    user.set('age', '8777'); // should fail
+    user.set('name', 'my first name on user model'); //should pass
+    user.set('age', {
+      age: 33
+    }); // should fail
+    user.set('age', 999); //should pass
+    user.set('address', 'my address'); //should pass
 
-    // //sets data binding
-    // // this.bind.user.name = user.get('name')
-    // user.set('address', user.upCase('my second address')); //should pass and postfix "!" to the address
+    //sets data binding
+    // this.bind.user.name = user.get('name')
+    user.set('address', user.upCase('my second address')); //should pass and postfix "!" to the address
 
-    // user.save();
-    // user.update();
-    // user.fetch();
-    // user.destroy();
+    user.save();
+    user.update();
+    user.fetch();
+    user.destroy();
 
-    // // second model
-    // let viewmodel = new ViewModel();
-    // viewmodel.set('single', 'updated via viewmodel model set function'); // should pass
-    // viewmodel.set('user.name', 'my second example name'); //should pass
-    // viewmodel.set('user.age', {
-    //     age: 22
-    //   }) // should fail
-    // viewmodel.set('user.age', 444); //should fail
-    // viewmodel.set('user.address', 77878); //should fail
-    // viewmodel.set('user.address', 'my second address'); //should pass
+    // second model
+    let viewmodel = new ViewModel();
+    viewmodel.set('single', 'updated via viewmodel model set function'); // should pass
+    viewmodel.set('user.name', 'my second example name'); //should pass
+    viewmodel.set('user.age', {
+        age: 22
+      }) // should fail
+    viewmodel.set('user.age', 444); //should fail
+    viewmodel.set('user.address', 77878); //should fail
+    viewmodel.set('user.address', 'my second address'); //should pass
 
     //sets data binding
     // this.bind = viewmodel.get()
@@ -55,7 +55,7 @@ export default class Example {
 
   exampleRouter() {
     // change state to /list
-    // router.go('hodor/12');
+    // router.go('hodor/12', {mydata:1234556, myobj:{name:'sherlock'}});
     // setTimeout(()=> window.router.go('list'),2000)
   }
 }

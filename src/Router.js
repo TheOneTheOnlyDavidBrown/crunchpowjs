@@ -17,7 +17,7 @@ export default class Router {
     }
   }
 
-  go(route, setUrl = true) {
+  go(route, options = {setUrl: true}) {
     console.log(`going to state ${route}`, this.view);
     let obj = this.findRouteInPaths(route);
     if (obj) {
@@ -28,7 +28,7 @@ export default class Router {
           this.view.innerHTML = template;
         });
     }
-    if (setUrl) {
+    if (options.setUrl) {
       this.url = obj
     }
   }
@@ -89,7 +89,7 @@ export default class Router {
 
 // * on page load, get url and load appropriate temtplate
 // * on url change, update template
-// allow wildcards in paths /template/user/:id
+// * allow wildcards in paths /template/user/:id
 // pass variables to template
 // * get state (if state == 'huhohohao')...
 // * update state on forward/back
