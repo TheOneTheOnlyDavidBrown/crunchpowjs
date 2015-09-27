@@ -40,15 +40,14 @@ export default class Router {
     console.log('not found natural path. searching wildcards');
     // TODO: clean this up. there has to be a better way
     for (let wildcard of this.wildcards) {
-      console.log(wildcard, route)
-      let wc = wildcard.name.split('/');
-      let r = route.split('/');
-      if (wc.length === r.length) {
-        for (var i = 0, l = wc.length; i < l; i++) {
-          if (wc[i].indexOf(':') === 0) {
-            let temp = wc;
-            temp[i] = r[i];
-            if (this.isIdentical(temp, r)) {
+      let _wildcard = wildcard.name.split('/');
+      let _route = route.split('/');
+      if (_wildcard.length === _route.length) {
+        for (var i = 0, l = _wildcard.length; i < l; i++) {
+          if (_wildcard[i].indexOf(':') === 0) {
+            let temp = _wildcard;
+            temp[i] = _route[i];
+            if (this.isIdentical(temp, _route)) {
               return {
                 name: route,
                 templateUrl: wildcard.templateUrl
