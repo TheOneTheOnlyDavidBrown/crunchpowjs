@@ -34,6 +34,7 @@
     "connect-history-api-fallback": "^1.1.0",
     "exorcist": "^0.4.0",
     "gulp": "^3.9.0",
+    "gulp-bower-files": "^0.2.7",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^1.0.0",
     "gulp-jshint": "^1.11.2",
@@ -44,6 +45,8 @@
     "mocha": "^2.3.2",
     "path": "^0.11.14",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.4.0"
+    "watchify": "^3.4.0",
+    "xhttp": "0.0.8",
+    "xr": "^0.1.13"
   }
 }

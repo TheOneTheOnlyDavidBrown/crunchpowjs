@@ -27,8 +27,12 @@
   <div liaison-bind="string"></div>
   <input type="text" liaison-bind="deep.objectstr" name="" value="" placeholder="">
   <div liaison-bind="deep.objectstr"></div>
+  <h3>Template from route:</h3>
+  <div liaison-view="list">
+    override this
+  </div>
 </body>
-<script src="../dist/scripts/app.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="scripts/app.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   load_component('Example', {

@@ -8,16 +8,17 @@ export default class Example {
     this.bind = new Liaison(data);
     console.log(this.bind);
     this.binding = new Binding(this.bind);
-    this.exampleUsage();
+    this.exampleBinding();
+    this.exampleRouter();
   }
 
-  exampleUsage() {
+  exampleBinding() {
     // here you have access to this.bind.user and this.bind.programming_languages
     console.log(this.bind.user);
     console.log(this.bind.programming_languages);
 
     //model examples
-    let user = new UserModel()
+    let user = new UserModel();
     user.set('age', '8777'); // should fail
     user.set('name', 'my first name on user model'); //should pass
     user.set('age', {
@@ -50,5 +51,11 @@ export default class Example {
     // this.bind = viewmodel.get()
     // this.bind.user = user.get()
     this.binding.refresh(this.bind);
+  }
+
+  exampleRouter() {
+    // change state to /list
+    // window.router.go('list');
+    // setTimeout(()=> window.router.go('hodor/joke'),2000)
   }
 }
