@@ -2,6 +2,7 @@ export default class Router {
   constructor() {
     this.view = document.querySelector('[liaison-view]');
     this.paths = [];
+    this.wildcards = [];
     //goes to hash url
     setTimeout(() => this.go(window.location.hash.substring(1)), 0);
     //allows back/forward buttons
@@ -9,7 +10,11 @@ export default class Router {
   }
 
   state(data) {
-    this.paths.push(data)
+    if (data.name.indexOf(':') > 0) {
+      this.wildcards.push(data);
+    } else {
+      this.paths.push(data);
+    }
   }
 
   go(route, setUrl = true) {
@@ -32,7 +37,28 @@ export default class Router {
     for (let path of this.paths) {
       if (path.name === route) return path;
     }
-    return null;
+    console.log('not found natural path. searching wildcards')
+    // TODO: clean this up. there has to be a better way
+    for (let wildcard of this.wildcards) {
+      console.log(wildcard, route)
+      let wc = wildcard.name.split('/');
+      let r = route.split('/');
+      if (wc.length === r.length) {
+        for (var i = 0, l = wc.length; i < l; i++) {
+          if (wc[i].indexOf(':') === 0) {
+            let temp = wc;
+            temp[i] = r[i];
+            if (temp = r) {
+              return {
+                name: route,
+                templateUrl: wildcard.templateUrl
+              }
+            }
+          }
+        };
+      }
+    }
+    return false;
   }
 
   set url(newUrl) {
@@ -56,3 +82,4 @@ export default class Router {
 // pass variables to template
 // * get state (if state == 'huhohohao')...
 // * update state on forward/back
+// routes on refresh
