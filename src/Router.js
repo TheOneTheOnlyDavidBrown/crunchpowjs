@@ -37,7 +37,7 @@ export default class Router {
     for (let path of this.paths) {
       if (path.name === route) return path;
     }
-    console.log('not found natural path. searching wildcards')
+    console.log('not found natural path. searching wildcards');
     // TODO: clean this up. there has to be a better way
     for (let wildcard of this.wildcards) {
       console.log(wildcard, route)
