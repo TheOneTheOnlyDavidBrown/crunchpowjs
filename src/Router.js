@@ -48,7 +48,7 @@ export default class Router {
           if (wc[i].indexOf(':') === 0) {
             let temp = wc;
             temp[i] = r[i];
-            if (temp = r) {
+            if (this.isIdentical(temp, r)) {
               return {
                 name: route,
                 templateUrl: wildcard.templateUrl
@@ -59,6 +59,18 @@ export default class Router {
       }
     }
     return false;
+  }
+
+  // TODO: put this in a helper library
+  // this function was found at http://stackoverflow.com/questions/7837456/comparing-two-arrays-in-javascript
+  // this is a shallow check
+  isIdentical(a, b) {
+    var i = a.length;
+    if (i != b.length) return false;
+    while (i--) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
   }
 
   set url(newUrl) {
@@ -82,4 +94,4 @@ export default class Router {
 // pass variables to template
 // * get state (if state == 'huhohohao')...
 // * update state on forward/back
-// routes on refresh
+// * routes on refresh
