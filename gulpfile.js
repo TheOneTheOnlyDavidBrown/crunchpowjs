@@ -107,7 +107,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task("bower-files", ['clean'], function() {
-  gulpBowerFiles().pipe(gulp.dest(bases.dist + 'bower'));
+  gulpBowerFiles().pipe(gulp.dest(bases.dist + 'vendor'));
 });
 
 // Define the default task as a sequence of the above tasks
