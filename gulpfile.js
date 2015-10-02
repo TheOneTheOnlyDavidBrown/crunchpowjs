@@ -11,7 +11,7 @@ var eslint = require('gulp-eslint');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 var sass = require('gulp-sass');
-var gulpBowerFiles = require('gulp-bower-files');
+var mainBowerFiles = require('main-bower-files');
 
 var bases = {
   app: 'example',
@@ -107,7 +107,10 @@ gulp.task('watch', function() {
 });
 
 gulp.task("bower-files", ['clean'], function() {
-  gulpBowerFiles().pipe(gulp.dest(bases.dist + 'vendor'));
+  return gulp.src(mainBowerFiles(), {
+      base: bases.dist + 'vendor'
+    })
+    .pipe(gulp.dest(bases.dist + 'vendor'));
 });
 
 // Define the default task as a sequence of the above tasks
