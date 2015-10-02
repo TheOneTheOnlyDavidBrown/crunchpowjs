@@ -17,13 +17,11 @@ Feature: Binding
     Then I should have a url that contains "/list"
     And liaison-view should have "list.html if you can see this, the template loaded!" in the content
 
-  @wip
   Scenario: I update the route to one that doesnt exist
     When I update the route to "/does/not/exist"
     Then I should have a url that contains "/does/not/exist"
     And liaison-view should have "404 not found error message" in the content
 
-  @wip
   Scenario: I go back from a route that doesnt exist
     When I update the route to "/users"
     When I update the route to "/does/not/exist"
