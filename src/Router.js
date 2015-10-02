@@ -39,7 +39,7 @@ export default class Router {
   }
 
   // TODO: clean this up. there has to be a better way
-  // TODO: write unit test for this? or is the integration test enough?
+  // TODO: write unit test for this. integration test is good but this can be unit tested which yields more consistent results
   findRouteInPaths(route) {
     for (let path of this.paths) {
       if (path.name === route) return path;

@@ -2,9 +2,9 @@
 
 // Import modules
 let chai = require('chai'),
-    path = require('path'),
-    expect = chai.expect,
-    BaseModel = require(path.join(__dirname, '..', 'src/BaseModel'));
+  path = require('path'),
+  expect = chai.expect,
+  BaseModel = require(path.join(__dirname, '..', 'src/BaseModel'));
 
 // Set up Chai matchers
 chai.should();
@@ -12,20 +12,20 @@ chai.should();
 describe('Base Model', () => {
   let model
   let schema = {
-      single: {type: 'string', value: 'from schema'},
-      user: {type: 'object', value:
-        {
-          id: {type: 'number', value:12345},
-          name: {type: 'string', value:'Sherlock Holmes'},
-          address: {type: 'string', value:'221b Baker Street'},
-          profile: {type: 'object', value: {
-            favorite_color: {type: 'string', value: 'green'},
-            favorite_food: {type: 'string', value: 'indian'}
-          }}
-        },
+    single: {type: 'string', value: 'from schema'},
+    user: {type: 'object', value:
+      {
+        id: {type: 'number', value:12345},
+        name: {type: 'string', value:'Sherlock Holmes'},
+        address: {type: 'string', value:'221b Baker Street'},
+        profile: {type: 'object', value: {
+          favorite_color: {type: 'string', value: 'green'},
+          favorite_food: {type: 'string', value: 'indian'}
+        }}
       },
-      programming_languages: {type:'array', value: ['javascript', 'ruby']}
-    }
+    },
+    programming_languages: {type:'array', value: ['javascript', 'ruby']}
+  }
 
   beforeEach(() => {
     model = new BaseModel('user', schema)

@@ -1,11 +1,11 @@
 {
-  "feature": "tests/features",
+  "feature": "e2e/features",
   "require": [
-    "tests/steps",
-    "tests/widgets"
+    "e2e/steps",
+    "e2e/widgets"
   ],
   "format": "pioneerformat.js",
-  "driver": "chrome",
+  "driver": "phantomjs",
   "error_formatter": "errorformat.js",
   "preventReload": false,
   "coffee": false,

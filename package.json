@@ -6,7 +6,7 @@
   "scripts": {
     "mocha": "mocha --compilers js:babel/register",
     "pioneer": "./node_modules/.bin/pioneer",
-    "tests": "mocha --compilers js:babel/register && ./node_modules/.bin/pioneer"
+    "test": "mocha --compilers js:babel/register && ./node_modules/.bin/pioneer"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,11 @@
     "gulp-jshint": "^1.11.2",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.4.0",
+    "jsdom": "^6.5.1",
+    "mocha-jsdom": "^1.0.0",
+    "mocha-phantomjs-core": "^1.1.1",
+    "node-jsdom": "^3.1.5",
+    "phantomjs": "^1.9.18",
     "pioneer": "^0.11.6"
   },
   "dependencies": {
