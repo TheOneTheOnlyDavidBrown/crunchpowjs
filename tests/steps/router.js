@@ -9,15 +9,12 @@ module.exports = function() {
 
   this.Then(/^liaison\-view should have "([^"]*)" in the content$/, function(value) {
     return this.Widget.read({
-      selector: "[liaison-view]",
-      transformer: function(text) {
-        return text.should.eql(value)
-      }
-    })
+      selector: "[liaison-view]"
+    }).should.eventually.eql(value)
   });
 
   this.Then(/^I go back a page$/, function() {
-    return this.driver.executeScript("window.history.back()");
+    return this.driver.executeScript("setTimeout(function(){window.history.back()},0)");
   });
 
 }

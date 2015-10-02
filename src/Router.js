@@ -23,9 +23,7 @@ export default class Router {
   }
 
   // integration tests cover this
-  go(route, options = {
-    setUrl: true
-  }) {
+  go(route) {
     console.log(`going to state ${route}`);
     let obj = this.findRouteInPaths(route);
     if (!obj) {
@@ -38,10 +36,6 @@ export default class Router {
       }).then((template) => {
         this.view.innerHTML = template;
       });
-
-    if (options.setUrl) {
-      this.url = obj
-    }
   }
 
   // TODO: clean this up. there has to be a better way
@@ -51,19 +45,17 @@ export default class Router {
       if (path.name === route) return path;
     }
     console.log('not found natural path. searching wildcards');
+
+    route = route.substring(1).split('/');
     for (let wildcard of this.wildcards) {
       let _wildcard = wildcard.name.substring(1).split('/');
-      let _route = route.substring(1).split('/');
-      if (_wildcard.length === _route.length) {
+      if (_wildcard.length === route.length) {
         for (var i = 0, l = _wildcard.length; i < l; i++) {
           if (_wildcard[i].indexOf(':') === 0) {
             let temp = _wildcard;
-            temp[i] = _route[i];
-            if (this.isIdentical(temp, _route)) {
-              return {
-                name: route,
-                templateUrl: wildcard.templateUrl
-              }
+            temp[i] = route[i];
+            if (this.isIdentical(temp, route)) {
+              return wildcard
             }
           }
         }
