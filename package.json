@@ -4,8 +4,9 @@
   "description": "ES6/2015 library that allows for passing of view data to ES6/2015 modules. This is an alternative to storing data in HTML data attributes that clutter the DOM. Also supports two way data binding.",
   "main": "Liaisonjs.js",
   "scripts": {
-    "test": "mocha --compilers js:babel/register",
-    "pioneer": "./node_modules/.bin/pioneer"
+    "mocha": "mocha --compilers js:babel/register",
+    "pioneer": "./node_modules/.bin/pioneer",
+    "tests": "mocha --compilers js:babel/register && ./node_modules/.bin/pioneer"
   },
   "repository": {
     "type": "git",
