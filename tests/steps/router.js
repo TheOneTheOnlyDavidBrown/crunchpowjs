@@ -11,8 +11,13 @@ module.exports = function() {
     return this.Widget.read({
       selector: "[liaison-view]",
       transformer: function(text) {
-        return text.should.contain(value)
+        return text.should.eql(value)
       }
     })
   });
+
+  this.Then(/^I go back a page$/, function() {
+    return this.driver.executeScript("window.history.back()");
+  });
+
 }
