@@ -6,11 +6,7 @@ export default class Router {
     //goes to hash url
     setTimeout(() => this.go(window.location.hash.substring(1)), 0);
     //allows back/forward buttons
-    window.addEventListener('popstate', (event) => {
-      console.log('pop', event.state, window.location.hash.substring(1), window.history)
-      console.log(event)
-      this.go(event.state || window.location.hash.substring(1), false)
-    });
+    window.addEventListener('popstate', (event) => this.go(event.state || window.location.hash.substring(1), false));
   }
 
   state(data) {
@@ -33,7 +29,6 @@ export default class Router {
     console.log(`going to state ${route}`);
     let obj = this.findRouteInPaths(route);
     if (!obj) {
-      console.log('aaaaa')
       this.go(this._fallback.name)
       return false;
     }
@@ -88,15 +83,6 @@ export default class Router {
       if (a[i] !== b[i]) return false;
     }
     return true;
-  }
-
-  set url(newUrl) {
-    console.log('push', newUrl)
-    // window.history.pushState(newUrl.name, newUrl.name, '#' + newUrl.name);
-  }
-
-  get currentState() {
-    return window.history.state;
   }
 }
 
