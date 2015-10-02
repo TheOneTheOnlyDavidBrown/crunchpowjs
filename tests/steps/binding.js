@@ -14,9 +14,9 @@ module.exports = function() {
     }).sendKeys(value, '\uE007');
   });
 
-  this.Then(/^I should see \"([^\"]*)\" in the data bound field$/, function() {
+  this.Then(/^I should see \"([^\"]*)\" in the data bound field$/, function(expected) {
     return this.Widget.read({
       selector: '#user-address'
-    }).should.eventually.eql('221b london');
+    }).should.eventually.eql(expected);
   })
 }
