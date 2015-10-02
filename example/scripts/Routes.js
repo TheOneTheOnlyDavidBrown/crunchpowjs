@@ -1,28 +1,33 @@
 // puts routes on the router class
 
 import Router from './Router'
+  // TODO: not attach this to the global namespace
 window.router = window.router || new Router();
 router.state({
-  name: 'hodor/hodor',
-  templateUrl: 'templates/hodor.html'
+  name: '/users',
+  templateUrl: 'templates/userindex.html'
 });
 router.state({
-  name: 'hodor/:id',
-  templateUrl: 'templates/hodorid.html'
+  name: '/user/:id',
+  templateUrl: 'templates/user.html'
 });
 router.state({
-  name: 'hodor/:id/details',
-  templateUrl: 'templates/hodorid.html'
+  name: '/user/:id/details',
+  templateUrl: 'templates/userdetails.html'
 });
 router.state({
-  name: 'hodor/:id/:subid',
-  templateUrl: 'templates/hodorsubid.html'
+  name: '/user/:id/:subid',
+  templateUrl: 'templates/usersub.html'
 });
 router.state({
-  name: 'list',
+  name: '/list',
   templateUrl: 'templates/list.html'
 });
 router.state({
   name: '/',
   templateUrl: 'templates/list.html'
+});
+router.fallback({
+  name: '/404',
+  templateUrl: 'templates/404.html'
 });

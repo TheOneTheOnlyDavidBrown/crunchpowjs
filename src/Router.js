@@ -17,17 +17,27 @@ export default class Router {
     }
   }
 
-  go(route, options = {setUrl: true}) {
+  fallback(data) {
+    this.paths.push(data);
+    this._fallback = data;
+  }
+
+  go(route, options = {
+    setUrl: true
+  }) {
     console.log(`going to state ${route}`, this.view);
     let obj = this.findRouteInPaths(route);
-    if (obj) {
-      fetch(obj.templateUrl)
-        .then((response) => {
-          return response.text();
-        }).then((template) => {
-          this.view.innerHTML = template;
-        });
+    if (!obj) {
+      this.go(this._fallback.name)
+      return false;
     }
+    fetch(obj.templateUrl)
+      .then((response) => {
+        return response.text();
+      }).then((template) => {
+        this.view.innerHTML = template;
+      });
+
     if (options.setUrl) {
       this.url = obj
     }
@@ -40,8 +50,9 @@ export default class Router {
     console.log('not found natural path. searching wildcards');
     // TODO: clean this up. there has to be a better way
     for (let wildcard of this.wildcards) {
-      let _wildcard = wildcard.name.split('/');
-      let _route = route.split('/');
+      let _wildcard = wildcard.name.substring(1).split('/');
+      let _route = route.substring(1).split('/');
+      // console.log(_wildcard, _route)
       if (_wildcard.length === _route.length) {
         for (var i = 0, l = _wildcard.length; i < l; i++) {
           if (_wildcard[i].indexOf(':') === 0) {
@@ -57,6 +68,7 @@ export default class Router {
         };
       }
     }
+    console.log('returning fallback', this._fallback)
     return false;
   }
 
@@ -73,11 +85,8 @@ export default class Router {
   }
 
   set url(newUrl) {
-    if (newUrl) {
-      window.history.pushState(newUrl.name, newUrl.name, '#' + newUrl.name);
-    } else {
-      window.history.pushState('fallback', 'fallback', '#' + '/');
-    }
+    console.log('push', newUrl)
+    window.history.pushState(newUrl.name, newUrl.name, '#' + newUrl.name);
   }
 
   get currentState() {
