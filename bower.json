@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "homepage": "https://github.com/TheOneTheOnlyDavidBrown/liaisonjs",
   "authors": [
-    "David Brown <dbrown@gmail.com>"
+    "David Brown <dcbrown07@gmail.com>"
   ],
   "description": "ES6/2015 library that allows for passing of view data to ES6/2015 modules with two way data binding and model validation against a schema",
   "main": [
