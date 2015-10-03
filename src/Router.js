@@ -15,6 +15,7 @@ export default class Router {
     } else {
       this.paths.push(data);
     }
+    return this;
   }
 
   fallback(data) {
