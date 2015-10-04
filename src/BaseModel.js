@@ -83,6 +83,21 @@ export default class BaseModel {
     return this._endpointPrefix || 'api/vi';
   }
 
+  // TODO: refactor this to helper
+  checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return response
+    } else {
+      var error = new Error(response.statusText)
+      error.response = response
+      throw error
+    }
+  }
+
+  parseJSON(response) {
+    return response.json()
+  }
+
   // TODO: CRUD operations xhr calls. return promises
   save(id = this.get('id')) {
     let url = `${this.endpointPrefix}/${this.modelName}/${id}`;
@@ -90,19 +105,21 @@ export default class BaseModel {
     sendObj[this.modelName] = this.get();
     console.log(`make post xhr call to ${url}`, sendObj);
 
-    fetch(url, {
-      method: 'post',
-      body: JSON.stringify(sendObj)
-    });
+    return fetch(url, {
+        method: 'post',
+        body: JSON.stringify(sendObj)
+      }).then(this.checkStatus)
+      .then(this.parseJSON);
   }
 
   fetch(id = this.get('id')) {
     let url = `${this.endpointPrefix}/${this.modelName}/${id}`;
     console.log(`make get xhr call to ${url}`);
 
-    fetch(url, {
-      method: 'get'
-    });
+    return fetch(url, {
+        method: 'get'
+      }).then(this.checkStatus)
+      .then(this.parseJSON);;
   }
 
   update(id = this.get('id')) {
@@ -123,8 +140,9 @@ export default class BaseModel {
     let url = `${this.endpointPrefix}/${this.modelName}/${id}`;
     console.log(`make delete xhr call to ${url}`);
 
-    fetch(url, {
-      method: 'delete'
-    });
+    return fetch(url, {
+        method: 'delete'
+      }).then(this.checkStatus)
+      .then(this.parseJSON);
   }
 }
