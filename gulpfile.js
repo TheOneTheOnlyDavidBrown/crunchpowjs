@@ -32,6 +32,7 @@ var paths = {
 // Static server
 gulp.task('browser-sync', function() {
   browserSync.init({
+    port: 9000,
     server: {
       baseDir: "dist"
     }

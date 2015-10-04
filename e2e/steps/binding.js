@@ -1,6 +1,6 @@
 module.exports = function() {
   this.Given(/^I visit Index/, function() {
-    this.driver.get('http://localhost:3001/#/')
+    this.driver.get('http://localhost:9000/#/')
   });
 
   this.Then(/^I should see "([^"]*)" in the data bound field for "([^"]*)"$/, function(expected, field) {
