@@ -19,38 +19,32 @@
   },
   "homepage": "https://github.com/TheOneTheOnlyDavidBrown/liaisonjs",
   "devDependencies": {
-    "chromedriver": "^2.19.0",
-    "gulp-babel": "^5.2.1",
-    "gulp-clean": "^0.3.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-imagemin": "^2.3.0",
-    "gulp-jshint": "^1.11.2",
-    "gulp-sourcemaps": "^1.5.2",
-    "gulp-uglify": "^1.4.0",
-    "phantomjs": "^1.9.18",
-    "pioneer": "^0.11.6"
-  },
-  "dependencies": {
     "babel": "^5.8.23",
     "babelify": "^6.3.0",
     "browser-sync": "^2.9.1",
     "browserify": "^11.0.1",
     "chai": "^3.2.0",
-    "connect-history-api-fallback": "^1.1.0",
-    "exorcist": "^0.4.0",
+    "chromedriver": "^2.19.0",
     "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^1.0.0",
+    "gulp-imagemin": "^2.3.0",
     "gulp-jshint": "^1.11.2",
     "gulp-notify": "^2.2.0",
     "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.4.0",
     "gulp-util": "^3.0.6",
     "main-bower-files": "^2.9.0",
     "mocha": "^2.3.2",
-    "path": "^0.11.14",
-    "vinyl-source-stream": "^1.1.0",
+    "phantomjs": "^1.9.18",
+    "pioneer": "^0.11.6",
     "watchify": "^3.4.0",
+    "whatwg-fetch": "^0.9.0"
+  },
+  "dependencies": {
     "xhttp": "0.0.8"
   }
 }
