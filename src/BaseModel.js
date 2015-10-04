@@ -89,19 +89,42 @@ export default class BaseModel {
     let sendObj = {};
     sendObj[this.modelName] = this.get();
     console.log(`make post xhr call to ${url}`, sendObj);
+
+    fetch(url, {
+      method: 'post',
+      body: JSON.stringify(sendObj)
+    });
   }
+
   fetch(id = this.get('id')) {
     let url = `${this.endpointPrefix}/${this.modelName}/${id}`;
     console.log(`make get xhr call to ${url}`);
+
+    fetch(url, {
+      method: 'get'
+    });
   }
+
   update(id = this.get('id')) {
     let url = `${this.endpointPrefix}/${this.modelName}/${id}`;
     let sendObj = {};
     sendObj[this.modelName] = this.get();
     console.log(`make update xhr call to ${url}`, sendObj);
+
+    // Github's fetch project doesnt appear to support UPDATE
+    // TODO: investigate the above statement
+    // fetch(url, {
+    //   method: 'UPDATE',
+    //   body: JSON.stringify(sendObj)
+    // });
   }
+
   destroy(id = this.get('id')) {
     let url = `${this.endpointPrefix}/${this.modelName}/${id}`;
     console.log(`make delete xhr call to ${url}`);
+
+    fetch(url, {
+      method: 'delete'
+    });
   }
 }
