@@ -35,29 +35,26 @@ export default class Binding {
       //keydown gives better response but cuts off the first key because its getting the value of the pre keydown element
       elm.addEventListener('keyup', (e) => {
         this.setValue(this.data, elm.getAttribute('liaison-bind'), e.target.value);
-      })
+      });
     }
   }
 
   setElementContent(element, value) {
-    if (!value) return;
+    // allows multiple components
+    if (value === undefined) {
+      return
+    }
     element.innerHTML = value;
     element.value = value;
   }
 
   setValue(obj, access, value) {
-    console.log('setval')
     if (typeof(access) == 'string') {
       access = access.split('.');
     }
-    console.log('obj.access', obj[access[0]]);
     if (access.length > 1 && obj[access[0]]) {
-      console.log('recheck')
       this.setValue(obj[access.shift()], access, value);
-    } else if (obj[access[0]]) {
-      console.log('a', obj, access);
-      console.log('b', value, this.data);
-
+    } else if (typeof obj[access[0]] === 'string') {
       obj[access[0]] = value;
     }
   }
@@ -69,7 +66,7 @@ export default class Binding {
     if (access.length > 1 && obj[access[0]]) {
       return this.getValue(obj[access.shift()], access);
     } else {
-      return obj[access[0]] || '';
+      return obj[access[0]];
     }
   }
 
