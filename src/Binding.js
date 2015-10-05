@@ -6,7 +6,7 @@ export default class Binding {
     this.data = data;
     this.findBindable();
 
-    var currentData = currentData || {};
+    let currentData = currentData || {};
 
     // watching this.data for programmatical updates
     setInterval(() => {
@@ -41,9 +41,7 @@ export default class Binding {
 
   setElementContent(element, value) {
     // allows multiple components
-    if (value === undefined) {
-      return
-    }
+    if (value === undefined) return;
     element.innerHTML = value;
     element.value = value;
   }
