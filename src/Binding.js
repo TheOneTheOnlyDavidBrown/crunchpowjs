@@ -46,12 +46,18 @@ export default class Binding {
   }
 
   setValue(obj, access, value) {
+    console.log('setval')
     if (typeof(access) == 'string') {
       access = access.split('.');
     }
+    console.log('obj.access', obj[access[0]]);
     if (access.length > 1 && obj[access[0]]) {
+      console.log('recheck')
       this.setValue(obj[access.shift()], access, value);
     } else if (obj[access[0]]) {
+      console.log('a', obj, access);
+      console.log('b', value, this.data);
+
       obj[access[0]] = value;
     }
   }
