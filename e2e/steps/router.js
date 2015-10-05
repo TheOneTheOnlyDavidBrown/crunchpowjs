@@ -1,6 +1,6 @@
 module.exports = function() {
   this.When(/^I update the route to "([^"]*)"$/, function(value) {
-    this.driver.get('http://localhost:3001/#' + value);
+    this.driver.get('http://localhost:9000/#' + value);
   });
 
   this.Then(/^I should have a url that contains "([^"]*)"$/, function(value) {

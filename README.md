@@ -94,11 +94,16 @@ When using BaseModel with data binding you may need to force refresh your bindin
 
 ## Running Tests
 `npm run mocha` will run the Mocha tests
+
 `npm run pioneer` will run the Pioneer tests
+
 `npm test` will run both mocha and Pioneer tests
 
 ## Compiling
 It is recommended you compile this with babel using the `--modules ignore` flag
+
+## Future Plans
+I have router added to the project but I need better docs and to flesh out some minor details. Tests are in and it works well though
 
 ### Contributing
 
