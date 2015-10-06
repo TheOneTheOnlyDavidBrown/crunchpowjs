@@ -1,21 +1,18 @@
 //allowing for..of of nodelists for Chrome support
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
-import Hasher from './Hasher'
+import Utils from './Utils'
 
 export default class Binding {
   constructor(data) {
     this.data = data;
     this.findBindable();
-    this.hash = new Hasher();
+    this.utils = new Utils();
 
     let currentData = currentData || {};
 
     // watching this.data for programmatical updates
     setInterval(() => {
-      // TODO find a better way to compare
-      // if (this.hash.compare(currentData, this.data) === false) {
-
-      if (JSON.stringify(currentData) !== JSON.stringify(this.data)) {
+      if (this.utils.compareByConvert(currentData, this.data) === false) {
         currentData = JSON.parse(JSON.stringify(this.data));
         this.populateBindings();
       }

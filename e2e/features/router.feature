@@ -1,4 +1,4 @@
-Feature: Binding
+Feature: Router
 
   Background:
     Given I visit Index

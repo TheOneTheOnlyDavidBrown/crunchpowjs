@@ -85,6 +85,7 @@ export default class Router {
 // * on url change, update template
 // * allow wildcards in paths /template/user/:id
 // pass variables to template
+// allow component to be declared in route object
 // * get state (if state == 'huhohohao')...
 // * update state on forward/back
 // * routes on refresh
