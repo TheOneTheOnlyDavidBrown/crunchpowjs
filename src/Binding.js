@@ -32,9 +32,9 @@ export default class Binding {
 
   findBindable() {
     for (let elm of document.querySelectorAll('[liaison-bind]')) {
-      //keydown gives better response but cuts off the first key because its getting the value of the pre keydown element
-      elm.addEventListener('keyup', (e) => {
-        this.setValue(this.data, elm.getAttribute('liaison-bind'), e.target.value);
+      elm.addEventListener('keydown', (e) => {
+        //settimeout allows the keydown event go get the new value
+        setTimeout(() => this.setValue(this.data, elm.getAttribute('liaison-bind'), e.srcElement.value))
       });
     }
   }
