@@ -102,23 +102,28 @@ export default class BaseModel {
   save(id = this.get('id')) {
     const url = `${this.endpointPrefix}/${this.modelName}/${id}`;
     const sendObj = {};
+    const xhrProperties = {
+      method: 'post',
+      body: JSON.stringify(sendObj),
+    };
+
     sendObj[this.modelName] = this.get();
     console.log(`make post xhr call to ${url}`, sendObj);
 
-    return fetch(url, {
-        method: 'post',
-        body: JSON.stringify(sendObj),
-      }).then(this._checkStatus)
+    return fetch(url, xhrProperties)
+      .then(this._checkStatus)
       .then(this._parseJSON);
   }
 
   fetch(id = this.get('id')) {
     const url = `${this.endpointPrefix}/${this.modelName}/${id}`;
+    const xhrProperties = {
+      method: 'get',
+    };
     console.log(`make get xhr call to ${url}`);
 
-    return fetch(url, {
-        method: 'get',
-      }).then(this._checkStatus)
+    return fetch(url, xhrProperties)
+      .then(this._checkStatus)
       .then(this._parseJSON);
   }
 
@@ -138,11 +143,13 @@ export default class BaseModel {
 
   destroy(id = this.get('id')) {
     const url = `${this.endpointPrefix}/${this.modelName}/${id}`;
+    const xhrProperties = {
+      method: 'delete',
+    };
     console.log(`make delete xhr call to ${url}`);
 
-    return fetch(url, {
-      method: 'delete',
-    }).then(this._checkStatus)
-    .then(this._parseJSON);
+    return fetch(url, xhrProperties)
+      .then(this._checkStatus)
+      .then(this._parseJSON);
   }
 }
