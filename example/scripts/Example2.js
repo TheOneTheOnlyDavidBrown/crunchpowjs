@@ -4,7 +4,7 @@ import Binding from './Binding';
 export default class Example2 {
   constructor(data) {
     this.bind = new Liaison(data);
-    new Binding(this.bind);
+    this.binding = new Binding(this.bind);
       // this.anotherFunction()
   }
 

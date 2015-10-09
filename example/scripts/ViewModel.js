@@ -1,33 +1,33 @@
-import BaseModel from './BaseModel'
+import BaseModel from './BaseModel';
 
 export class ViewModel extends BaseModel {
   constructor() {
     super('view', {
       single: {
         type: 'string',
-        value: 'from schema'
+        value: 'from schema',
       },
       user: {
         type: 'object',
         value: {
           id: {
             type: 'number',
-            value: 88888
+            value: 88888,
           },
           name: {
             type: 'string',
-            value: 'Sherlock Holmes'
+            value: 'Sherlock Holmes',
           },
           address: {
             type: 'string',
-            value: '221b Baker Street'
-          }
+            value: '221b Baker Street',
+          },
         },
       },
-      programming_languages: {
+      programmingLanguages: {
         type: 'array',
-        value: ['javascript', 'ruby']
-      }
+        value: ['javascript', 'ruby'],
+      },
     });
   }
 }

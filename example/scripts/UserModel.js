@@ -1,28 +1,28 @@
-import BaseModel from './BaseModel'
+import BaseModel from './BaseModel';
 
 export class UserModel extends BaseModel {
   constructor() {
     super('user', {
       id: {
         value: 789787,
-        type: 'number'
+        type: 'number',
       },
       name: {
         value: 'name',
-        type: 'string'
+        type: 'string',
       },
       address: {
         value: '221b bake',
-        type: 'string'
+        type: 'string',
       },
       age: {
         value: null,
-        type: 'number'
-      }
+        type: 'number',
+      },
     });
   }
 
-  //example model helper
+  // example model helper
   upCase(str) {
     return str.toUpperCase();
   }

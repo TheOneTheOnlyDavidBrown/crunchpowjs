@@ -1,4 +1,3 @@
-'use strict';
 //allowing for..of of nodelists for Chrome support
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 import {Utils} from './Utils';

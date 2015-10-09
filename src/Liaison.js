@@ -1,12 +1,12 @@
-'use strict';
 export default class Liaison {
   constructor(data) {
-    let datum;
-    for (datum in data) {
-      this[datum] = data[datum];
+    for (const datum in data) {
+      if (datum) {
+        this[datum] = data[datum];
+      }
     }
   }
 }
 export default function loadComponent(module, data) {
-  new window[module](data);
+  return new window[module](data);
 }

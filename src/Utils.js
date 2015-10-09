@@ -1,22 +1,21 @@
-'use strict';
 export default class Utils {
   constructor() {}
 
   _hasher(val) {
-    let hash = 0,
-      i,
-      l,
-      string = val.toString();
-    for (i = 0, l = string.length; i < l; i++) {
-      hash = (((hash << 5) - hash) + string.charCodeAt(i)) & 0xFFFFFFFF;
+    let hash = 0;
+    let index;
+    let len;
+    const string = val.toString();
+    for (index = 0, len = string.length; index < len; index++) {
+      hash = (((hash << 5) - hash) + string.charCodeAt(index)) & 0xFFFFFFFF;
     }
     return hash;
   }
 
-  object(self, obj, result = 0) {
-    for (let property in obj) {
+  _object(self, obj, result = 0) {
+    for (const property in obj) {
       if (typeof obj[property] === 'object') {
-        return this.object(self, obj[property], result);
+        return this._object(self, obj[property], result);
       }
       if (hasOwnProperty.call(obj, property)) {
         result += self._hasher(property + self._hasher(obj[property]));
@@ -26,23 +25,23 @@ export default class Utils {
   }
 
   hash(input) {
-    let types = {
+    const types = {
       'string': this._hasher,
       'number': this._hasher,
       'boolean': this._hasher,
-      'object': this.object
+      'object': this.object,
     };
-    let type = typeof input;
+    const type = typeof input;
 
-    return input != null && types[type] ? types[type](this, input) + this._hasher(type) : 0;
+    return input !== null && types[type] ? types[type](this, input) + this._hasher(type) : 0;
   }
 
-  compareHashes(a, b) {
-    return this.hash(a) === this.hash(b);
+  compareHashes(itemA, itemB) {
+    return this.hash(itemA) === this.hash(itemB);
   }
 
-  //faster than compareHashes
-  compare(a, b) {
-    return JSON.stringify(a) === JSON.stringify(b);
+  // faster than compareHashes
+  compare(itemA, itemB) {
+    return JSON.stringify(itemA) === JSON.stringify(itemB);
   }
 }

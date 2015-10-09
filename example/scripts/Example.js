@@ -17,49 +17,55 @@ export default class Example {
     // console.log(this.bind.user);
     // console.log(this.bind.programming_languages);
 
-    //model examples
-    let user = new UserModel();
+    // model examples
+    const user = new UserModel();
     user.set('age', '8777'); // should fail
-    user.set('name', 'my first name on user model'); //should pass
+    user.set('name', 'my first name on user model'); // should pass
     user.set('age', {
-      age: 33
+      age: 33,
     }); // should fail
-    user.set('age', 999); //should pass
-    user.set('address', 'my address'); //should pass
+    user.set('age', 999); // should pass
+    user.set('address', 'my address'); // should pass
 
-    //sets data binding
+    // sets data binding
     // this.bind.user.name = user.get('name')
-    user.set('address', user.upCase('my second address')); //should pass and postfix "!" to the address
+    user.set('address', user.upCase('my second address')); // should pass and postfix "!" to the address
 
-    user.save().then(function() {
+    user.save().then(() => {
       console.log('then');
-    }).catch(function(error) {
+    }).catch((error) => {
       console.log('request failed', error);
     });
     user.update();
-    user.fetch().then(function() {
+    user.fetch().then(() => {
       console.log('then');
-    }).catch(function(error) {
+    }).catch((error) => {
       console.log('request failed', error);
     });
-    user.destroy().then(function() {
+    user.destroy().then(() => {
       console.log('then');
-    }).catch(function(error) {
+    }).catch((error) => {
       console.log('request failed', error);
     });
 
     // second model
-    let viewmodel = new ViewModel();
-    viewmodel.set('single', 'updated via viewmodel model set function'); // should pass
-    viewmodel.set('user.name', 'my second example name'); //should pass
+    const viewmodel = new ViewModel();
+    // should pass
+    viewmodel.set('single', 'updated via viewmodel model set function');
+    // should pass
+    viewmodel.set('user.name', 'my second example name');
+    // should fail
     viewmodel.set('user.age', {
-        age: 22
-      }); // should fail
-    viewmodel.set('user.age', 444); //should fail
-    viewmodel.set('user.address', 77878); //should fail
-    viewmodel.set('user.address', 'my second address'); //should pass
+      age: 22,
+    });
+    // should fail
+    viewmodel.set('user.age', 444);
+    // should fail
+    viewmodel.set('user.address', 77878);
+    // should pass
+    viewmodel.set('user.address', 'my second address');
 
-    //sets data binding
+    // sets data binding
     // this.bind = viewmodel.get()
     // this.bind.user = user.get()
     this.binding.refresh(this.bind);
