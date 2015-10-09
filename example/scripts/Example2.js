@@ -1,5 +1,5 @@
-import Liaison from './Liaison'
-import Binding from './Binding'
+import Liaison from './Liaison';
+import Binding from './Binding';
 
 export default class Example2 {
   constructor(data) {

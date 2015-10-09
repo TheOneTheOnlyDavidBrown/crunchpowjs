@@ -1,6 +1,7 @@
+'use strict';
 //allowing for..of of nodelists for Chrome support
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
-import Utils from './Utils'
+import {Utils} from './Utils';
 
 export default class Binding {
   constructor(data) {
@@ -12,7 +13,7 @@ export default class Binding {
 
     // watching this.data for programmatical updates
     setInterval(() => {
-      if (this.utils.compareByConvert(currentData, this.data) === false) {
+      if (this.utils.compare(currentData, this.data) === false) {
         currentData = JSON.parse(JSON.stringify(this.data));
         this.populateBindings();
       }
@@ -35,7 +36,7 @@ export default class Binding {
     for (let elm of document.querySelectorAll('[liaison-bind]')) {
       elm.addEventListener('keydown', (e) => {
         //settimeout allows the keydown event go get the new value
-        setTimeout(() => this.setValue(this.data, elm.getAttribute('liaison-bind'), e.srcElement.value))
+        setTimeout(() => this.setValue(this.data, elm.getAttribute('liaison-bind'), e.srcElement.value));
       });
     }
   }
@@ -48,7 +49,7 @@ export default class Binding {
   }
 
   setValue(obj, access, value) {
-    if (typeof(access) == 'string') {
+    if (typeof(access) === 'string') {
       access = access.split('.');
     }
     if (access.length > 1 && obj[access[0]]) {
@@ -59,7 +60,7 @@ export default class Binding {
   }
 
   getValue(obj, access) {
-    if (typeof(access) == 'string') {
+    if (typeof(access) === 'string') {
       access = access.split('.');
     }
     if (access.length > 1 && obj[access[0]]) {

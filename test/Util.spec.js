@@ -1,5 +1,3 @@
-// import UserModel from '../exampleApp/scripts/UserModel'
-
 // Import modules
 let chai = require('chai'),
   path = require('path'),

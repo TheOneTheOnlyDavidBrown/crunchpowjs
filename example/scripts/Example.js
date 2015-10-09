@@ -1,7 +1,7 @@
-import Liaison from './Liaison'
-import Binding from './Binding'
-import UserModel from './UserModel'
-import ViewModel from './ViewModel'
+import Liaison from './Liaison';
+import Binding from './Binding';
+import UserModel from './UserModel';
+import ViewModel from './ViewModel';
 
 export default class Example {
   constructor(data) {
@@ -32,20 +32,20 @@ export default class Example {
     user.set('address', user.upCase('my second address')); //should pass and postfix "!" to the address
 
     user.save().then(function() {
-      console.log('then')
+      console.log('then');
     }).catch(function(error) {
-      console.log('request failed', error)
+      console.log('request failed', error);
     });
     user.update();
     user.fetch().then(function() {
-      console.log('then')
+      console.log('then');
     }).catch(function(error) {
-      console.log('request failed', error)
+      console.log('request failed', error);
     });
     user.destroy().then(function() {
-      console.log('then')
+      console.log('then');
     }).catch(function(error) {
-      console.log('request failed', error)
+      console.log('request failed', error);
     });
 
     // second model
@@ -54,7 +54,7 @@ export default class Example {
     viewmodel.set('user.name', 'my second example name'); //should pass
     viewmodel.set('user.age', {
         age: 22
-      }) // should fail
+      }); // should fail
     viewmodel.set('user.age', 444); //should fail
     viewmodel.set('user.address', 77878); //should fail
     viewmodel.set('user.address', 'my second address'); //should pass

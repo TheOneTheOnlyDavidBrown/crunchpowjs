@@ -1,3 +1,4 @@
+'use strict';
 export default class Liaison {
   constructor(data) {
     let datum;
@@ -6,6 +7,6 @@ export default class Liaison {
     }
   }
 }
-export default function load_component(module, data) {
+export default function loadComponent(module, data) {
   new window[module](data);
 }

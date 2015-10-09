@@ -1,4 +1,6 @@
-import Utils from './Utils'
+'use strict';
+import {Utils} from './Utils';
+
 export default class Router {
   constructor() {
     this.utils = new Utils();
@@ -30,7 +32,7 @@ export default class Router {
     console.log(`going to state ${route}`);
     let obj = this.findRouteInPaths(route);
     if (!obj) {
-      this.go(this._fallback.name)
+      this.go(this._fallback.name);
       return false;
     }
     fetch(obj.templateUrl)
@@ -54,8 +56,8 @@ export default class Router {
           if (_wildcard[i].indexOf(':') === 0) {
             let temp = _wildcard;
             temp[i] = route[i];
-            if (this.utils.compareByConvert(temp, route)) {
-              return wildcard
+            if (this.utils.compare(temp, route)) {
+              return wildcard;
             }
           }
         }

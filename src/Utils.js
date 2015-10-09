@@ -1,3 +1,4 @@
+'use strict';
 export default class Utils {
   constructor() {}
 
@@ -15,7 +16,7 @@ export default class Utils {
   object(self, obj, result = 0) {
     for (let property in obj) {
       if (typeof obj[property] === 'object') {
-        return this.object(self, obj[property], result)
+        return this.object(self, obj[property], result);
       }
       if (hasOwnProperty.call(obj, property)) {
         result += self.hasher(property + self.hasher(obj[property]));
@@ -36,12 +37,12 @@ export default class Utils {
     return input != null && types[type] ? types[type](this, input) + this.hasher(type) : 0;
   }
 
-  compare(a, b) {
+  compareHashes(a, b) {
     return this.hash(a) === this.hash(b);
   }
 
   //faster than compare
-  compareByConvert(a, b) {
-    return JSON.stringify(a) === JSON.stringify(b)
+  compare(a, b) {
+    return JSON.stringify(a) === JSON.stringify(b);
   }
 }

@@ -11,7 +11,7 @@ export default class BaseModel {
       console.warn(`Not setting "${key}" in ${this.modelName} model to "${value}" because it doesnt exist in the schema`);
       return;
     }
-    let typeMatches = this.checkType(this.data, key, value)
+    let typeMatches = this.checkType(this.data, key, value);
     if (!typeMatches) {
       console.warn(`Not setting "${key}" in ${this.modelName} model to "${value}" because it it isnt the right type`);
       return;
@@ -28,7 +28,7 @@ export default class BaseModel {
   }
 
   existsInSchema(obj, access, value) {
-    access = (typeof(access) == 'string') ? access.split('.') : access;
+    access = (typeof(access) === 'string') ? access.split('.') : access;
     if (access.length > 1 && obj[access[0]]) {
       return this.existsInSchema(obj[access.shift()].value, access, value);
     } else {
@@ -86,16 +86,16 @@ export default class BaseModel {
   // TODO: refactor this to helper
   checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
-      return response
+      return response;
     } else {
       var error = new Error(response.statusText)
-      error.response = response
-      throw error
+      error.response = response;
+      throw error;
     }
   }
 
   parseJSON(response) {
-    return response.json()
+    return response.json();
   }
 
   // TODO: CRUD operations xhr calls. return promises
@@ -119,7 +119,7 @@ export default class BaseModel {
     return fetch(url, {
         method: 'get'
       }).then(this.checkStatus)
-      .then(this.parseJSON);;
+      .then(this.parseJSON);
   }
 
   update(id = this.get('id')) {
