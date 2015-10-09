@@ -2,7 +2,7 @@
 export default class Utils {
   constructor() {}
 
-  hasher(val) {
+  _hasher(val) {
     let hash = 0,
       i,
       l,
@@ -19,7 +19,7 @@ export default class Utils {
         return this.object(self, obj[property], result);
       }
       if (hasOwnProperty.call(obj, property)) {
-        result += self.hasher(property + self.hasher(obj[property]));
+        result += self._hasher(property + self._hasher(obj[property]));
       }
     }
     return result;
@@ -27,21 +27,21 @@ export default class Utils {
 
   hash(input) {
     let types = {
-      'string': this.hasher,
-      'number': this.hasher,
-      'boolean': this.hasher,
+      'string': this._hasher,
+      'number': this._hasher,
+      'boolean': this._hasher,
       'object': this.object
     };
     let type = typeof input;
 
-    return input != null && types[type] ? types[type](this, input) + this.hasher(type) : 0;
+    return input != null && types[type] ? types[type](this, input) + this._hasher(type) : 0;
   }
 
   compareHashes(a, b) {
     return this.hash(a) === this.hash(b);
   }
 
-  //faster than compare
+  //faster than compareHashes
   compare(a, b) {
     return JSON.stringify(a) === JSON.stringify(b);
   }
