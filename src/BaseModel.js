@@ -6,50 +6,50 @@ export default class BaseModel {
   }
 
   set(key, value) {
-    let existsInSchema = this.existsInSchema(this.data, key, value);
+    let existsInSchema = this._existsInSchema(this.data, key, value);
     if (!existsInSchema) {
-      console.warn(`Not setting "${key}" in ${this.modelName} model to "${value}" because it doesnt exist in the schema`);
+      console.warn(`Not setting "${key}" in ${this.modelName} model to "${value}". Doesnt exist in the schema`);
       return;
     }
-    let typeMatches = this.checkType(this.data, key, value);
+    let typeMatches = this._checkType(this.data, key, value);
     if (!typeMatches) {
-      console.warn(`Not setting "${key}" in ${this.modelName} model to "${value}" because it it isnt the right type`);
+      console.warn(`Not setting "${key}" in ${this.modelName} model to "${value}". It isnt the right type`);
       return;
     }
-    this.setValue(this.data, key, value);
+    this._setValue(this.data, key, value);
   }
 
   get(access) {
     if (access) {
-      return this.getValue(this.data, access);
+      return this._getValue(this.data, access);
     } else {
-      return this.getData(this.data);
+      return this._getData(this.data);
     }
   }
 
-  existsInSchema(obj, access, value) {
+  _existsInSchema(obj, access, value) {
     access = (typeof(access) === 'string') ? access.split('.') : access;
     if (access.length > 1 && obj[access[0]]) {
-      return this.existsInSchema(obj[access.shift()].value, access, value);
+      return this._existsInSchema(obj[access.shift()].value, access, value);
     } else {
       return obj[access[0]] ? true : false;
     }
   }
 
-  checkType(obj, access, value) {
-    access = (typeof(access) == 'string') ? access.split('.') : access;
+  _checkType(obj, access, value) {
+    access = (typeof(access) === 'string') ? access.split('.') : access;
     if (access.length > 1 && obj[access[0]]) {
-      return this.checkType(obj[access.shift()].value, access, value);
+      return this._checkType(obj[access.shift()].value, access, value);
     } else {
       return obj[access[0]].type === typeof value;
     }
   }
 
-  getData(obj, newObj = {}) {
+  _getData(obj, newObj = {}) {
     for (let element in obj) {
       if (obj[element].type === 'object') {
         newObj[element] = {};
-        this.getData(obj[element].value, newObj[element]);
+        this._getData(obj[element].value, newObj[element]);
       } else {
         newObj[element] = obj[element].value;
       }
@@ -57,19 +57,19 @@ export default class BaseModel {
     return newObj;
   }
 
-  setValue(obj, access, value) {
-    access = (typeof(access) == 'string') ? access.split('.') : access;
+  _setValue(obj, access, value) {
+    access = (typeof(access) === 'string') ? access.split('.') : access;
     if (access.length > 1 && obj[access[0]].value) {
-      this.setValue(obj[access.shift()].value, access, value);
+      this._setValue(obj[access.shift()].value, access, value);
     } else if (obj[access[0]].value) {
       obj[access[0]].value = value;
     }
   }
 
-  getValue(obj, access) {
-    access = (typeof(access) == 'string') ? access.split('.') : access;
+  _getValue(obj, access) {
+    access = (typeof(access) === 'string') ? access.split('.') : access;
     if (access.length > 1 && obj[access[0]]) {
-      return this.getValue(obj[access.shift()].value, access);
+      return this._getValue(obj[access.shift()].value, access);
     } else {
       return obj[access[0]].value || '';
     }
@@ -84,17 +84,17 @@ export default class BaseModel {
   }
 
   // TODO: refactor this to helper
-  checkStatus(response) {
+  _checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
       return response;
     } else {
-      var error = new Error(response.statusText)
+      var error = new Error(response.statusText);
       error.response = response;
       throw error;
     }
   }
 
-  parseJSON(response) {
+  _parseJSON(response) {
     return response.json();
   }
 
@@ -108,8 +108,8 @@ export default class BaseModel {
     return fetch(url, {
         method: 'post',
         body: JSON.stringify(sendObj)
-      }).then(this.checkStatus)
-      .then(this.parseJSON);
+      }).then(this._checkStatus)
+      .then(this._parseJSON);
   }
 
   fetch(id = this.get('id')) {
@@ -118,8 +118,8 @@ export default class BaseModel {
 
     return fetch(url, {
         method: 'get'
-      }).then(this.checkStatus)
-      .then(this.parseJSON);
+      }).then(this._checkStatus)
+      .then(this._parseJSON);
   }
 
   update(id = this.get('id')) {
@@ -142,7 +142,7 @@ export default class BaseModel {
 
     return fetch(url, {
         method: 'delete'
-      }).then(this.checkStatus)
-      .then(this.parseJSON);
+      }).then(this._checkStatus)
+      .then(this._parseJSON);
   }
 }

@@ -30,7 +30,7 @@ export default class Router {
   // integration tests cover this
   go(route) {
     console.log(`going to state ${route}`);
-    let obj = this.findRouteInPaths(route);
+    let obj = this._findRouteInPaths(route);
     if (!obj) {
       this.go(this._fallback.name);
       return false;
@@ -44,7 +44,7 @@ export default class Router {
   }
 
   // TODO: clean this up. there has to be a better way
-  findRouteInPaths(route) {
+  _findRouteInPaths(route) {
     for (let path of this.paths) {
       if (path.name === route) return path;
     }
