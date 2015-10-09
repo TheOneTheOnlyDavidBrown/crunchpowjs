@@ -6,12 +6,12 @@ export default class BaseModel {
   }
 
   set(key, value) {
-    let existsInSchema = this._existsInSchema(this.data, key, value);
+    const existsInSchema = this._existsInSchema(this.data, key, value);
     if (!existsInSchema) {
       console.warn(`Not setting "${key}" in ${this.modelName} model to "${value}". Doesnt exist in the schema`);
       return;
     }
-    let typeMatches = this._checkType(this.data, key, value);
+    const typeMatches = this._checkType(this.data, key, value);
     if (!typeMatches) {
       console.warn(`Not setting "${key}" in ${this.modelName} model to "${value}". It isnt the right type`);
       return;
@@ -46,7 +46,7 @@ export default class BaseModel {
   }
 
   _getData(obj, newObj = {}) {
-    for (let element in obj) {
+    for (const element in obj) {
       if (obj[element].type === 'object') {
         newObj[element] = {};
         this._getData(obj[element].value, newObj[element]);
@@ -88,7 +88,7 @@ export default class BaseModel {
     if (response.status >= 200 && response.status < 300) {
       return response;
     } else {
-      var error = new Error(response.statusText);
+      const error = new Error(response.statusText);
       error.response = response;
       throw error;
     }
@@ -100,31 +100,31 @@ export default class BaseModel {
 
   // TODO: CRUD operations xhr calls. return promises
   save(id = this.get('id')) {
-    let url = `${this.endpointPrefix}/${this.modelName}/${id}`;
-    let sendObj = {};
+    const url = `${this.endpointPrefix}/${this.modelName}/${id}`;
+    const sendObj = {};
     sendObj[this.modelName] = this.get();
     console.log(`make post xhr call to ${url}`, sendObj);
 
     return fetch(url, {
         method: 'post',
-        body: JSON.stringify(sendObj)
+        body: JSON.stringify(sendObj),
       }).then(this._checkStatus)
       .then(this._parseJSON);
   }
 
   fetch(id = this.get('id')) {
-    let url = `${this.endpointPrefix}/${this.modelName}/${id}`;
+    const url = `${this.endpointPrefix}/${this.modelName}/${id}`;
     console.log(`make get xhr call to ${url}`);
 
     return fetch(url, {
-        method: 'get'
+        method: 'get',
       }).then(this._checkStatus)
       .then(this._parseJSON);
   }
 
   update(id = this.get('id')) {
-    let url = `${this.endpointPrefix}/${this.modelName}/${id}`;
-    let sendObj = {};
+    const url = `${this.endpointPrefix}/${this.modelName}/${id}`;
+    const sendObj = {};
     sendObj[this.modelName] = this.get();
     console.log(`make update xhr call to ${url}`, sendObj);
 
@@ -137,12 +137,12 @@ export default class BaseModel {
   }
 
   destroy(id = this.get('id')) {
-    let url = `${this.endpointPrefix}/${this.modelName}/${id}`;
+    const url = `${this.endpointPrefix}/${this.modelName}/${id}`;
     console.log(`make delete xhr call to ${url}`);
 
     return fetch(url, {
-        method: 'delete'
-      }).then(this._checkStatus)
-      .then(this._parseJSON);
+      method: 'delete',
+    }).then(this._checkStatus)
+    .then(this._parseJSON);
   }
 }

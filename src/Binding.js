@@ -1,4 +1,4 @@
-//allowing for..of of nodelists for Chrome support
+// allowing for..of of nodelists for Chrome support
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 import {Utils} from './Utils';
 
@@ -20,11 +20,11 @@ export default class Binding {
   }
 
   _populateBindings() {
-    for (let elm of document.querySelectorAll('[liaison-bind]')) {
-      let bindName = document.activeElement.getAttribute('liaison-bind');
+    for (const elm of document.querySelectorAll('[liaison-bind]')) {
+      const bindName = document.activeElement.getAttribute('liaison-bind');
 
-      //prevent the input youre typing in from updating. prevents the cursor from jumping to the end
-      //only updates bindings that need to be updated
+      // prevent the input youre typing in from updating. prevents the cursor from jumping to the end
+      // only updates bindings that need to be updated
       if (elm !== document.activeElement && (elm.getAttribute('liaison-bind') === bindName || bindName === null)) {
         this._setElementContent(elm, this._getValue(this.data, elm.getAttribute('liaison-bind')));
       }
@@ -32,10 +32,10 @@ export default class Binding {
   }
 
   _findBindable() {
-    for (let elm of document.querySelectorAll('[liaison-bind]')) {
-      elm.addEventListener('keydown', (e) => {
-        //settimeout allows the keydown event go get the new value
-        setTimeout(() => this._setValue(this.data, elm.getAttribute('liaison-bind'), e.srcElement.value));
+    for (const elm of document.querySelectorAll('[liaison-bind]')) {
+      elm.addEventListener('keydown', (event) => {
+        // settimeout allows the keydown event go get the new value
+        setTimeout(() => this._setValue(this.data, elm.getAttribute('liaison-bind'), event.srcElement.value));
       });
     }
   }
