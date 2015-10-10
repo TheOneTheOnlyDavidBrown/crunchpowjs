@@ -47,15 +47,15 @@ export default class Router {
     for (const path of this.paths) {
       if (path.name === route) return path;
     }
-    route = route.substring(1).split('/');
+    const _route = route.substring(1).split('/');
     for (const wildcard of this.wildcards) {
       const _wildcard = wildcard.name.substring(1).split('/');
-      if (_wildcard.length === route.length) {
+      if (_wildcard.length === _route.length) {
         for (let index = 0, len = _wildcard.length; index < len; index++) {
           if (_wildcard[index].indexOf(':') === 0) {
             const temp = _wildcard;
-            temp[index] = route[index];
-            if (this.utils.compare(temp, route)) {
+            temp[index] = _route[index];
+            if (this.utils.compare(temp, _route)) {
               return wildcard;
             }
           }

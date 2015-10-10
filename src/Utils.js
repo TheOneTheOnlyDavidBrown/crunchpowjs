@@ -13,15 +13,16 @@ export default class Utils {
   }
 
   _object(self, obj, result = 0) {
+    let _result = result;
     for (const property in obj) {
       if (typeof obj[property] === 'object') {
-        return this._object(self, obj[property], result);
+        return this._object(self, obj[property], _result);
       }
       if (hasOwnProperty.call(obj, property)) {
-        result += self._hasher(property + self._hasher(obj[property]));
+        _result += self._hasher(property + self._hasher(obj[property]));
       }
     }
-    return result;
+    return _result;
   }
 
   hash(input) {

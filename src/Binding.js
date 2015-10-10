@@ -48,24 +48,26 @@ export default class Binding {
   }
 
   _setValue(obj, access, value) {
-    if (typeof(access) === 'string') {
-      access = access.split('.');
+    let _access = access;
+    if (typeof(_access) === 'string') {
+      _access = _access.split('.');
     }
-    if (access.length > 1 && obj[access[0]]) {
-      this._setValue(obj[access.shift()], access, value);
-    } else if (typeof obj[access[0]] === 'string') {
-      obj[access[0]] = value;
+    if (_access.length > 1 && obj[_access[0]]) {
+      this._setValue(obj[_access.shift()], _access, value);
+    } else if (typeof obj[_access[0]] === 'string') {
+      obj[_access[0]] = value;
     }
   }
 
   _getValue(obj, access) {
-    if (typeof(access) === 'string') {
-      access = access.split('.');
+    let _access = access;
+    if (typeof(_access) === 'string') {
+      _access = _access.split('.');
     }
-    if (access.length > 1 && obj[access[0]]) {
-      return this._getValue(obj[access.shift()], access);
+    if (_access.length > 1 && obj[_access[0]]) {
+      return this._getValue(obj[_access.shift()], _access);
     } else {
-      return obj[access[0]];
+      return obj[_access[0]];
     }
   }
 
