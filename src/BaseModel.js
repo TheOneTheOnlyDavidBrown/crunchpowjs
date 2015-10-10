@@ -42,7 +42,7 @@ export default class BaseModel {
 
   _checkType(obj, access, value) {
     let returnValue;
-    const _access = (typeof(_access) === 'string') ? _access.split('.') : _access;
+    const _access = (typeof(access) === 'string') ? access.split('.') : access;
     if (_access.length > 1 && obj[_access[0]]) {
       returnValue = this._checkType(obj[_access.shift()].value, _access, value);
     } else {
