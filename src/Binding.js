@@ -61,14 +61,16 @@ export default class Binding {
 
   _getValue(obj, access) {
     let _access = access;
+    let returnValue;
     if (typeof(_access) === 'string') {
       _access = _access.split('.');
     }
     if (_access.length > 1 && obj[_access[0]]) {
-      return this._getValue(obj[_access.shift()], _access);
+      returnValue = this._getValue(obj[_access.shift()], _access);
     } else {
-      return obj[_access[0]];
+      returnValue = obj[_access[0]];
     }
+    return returnValue;
   }
 
   refresh(data) {
