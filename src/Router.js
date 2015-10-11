@@ -1,4 +1,4 @@
-import {Utils} from './Utils';
+import Utils from './Utils';
 
 export default class Router {
   constructor() {
@@ -37,32 +37,42 @@ export default class Router {
     fetch(obj.templateUrl)
       .then((response) => {
         return response.text();
-      }).then((template) => {
+      })
+      .then((template) => {
         this.view.innerHTML = template;
       });
   }
 
   // TODO: clean this up. there has to be a better way
   _findRouteInPaths(route) {
+    // searching for natural path
     for (const path of this.paths) {
       if (path.name === route) return path;
     }
-    const _route = route.substring(1).split('/');
-    for (const wildcard of this.wildcards) {
-      const _wildcard = wildcard.name.substring(1).split('/');
-      if (_wildcard.length === _route.length) {
-        for (let index = 0, len = _wildcard.length; index < len; index++) {
-          if (_wildcard[index].indexOf(':') === 0) {
-            const temp = _wildcard;
-            temp[index] = _route[index];
-            if (this.utils.compare(temp, _route)) {
-              return wildcard;
-            }
-          }
-        }
-      }
-    }
-    return false;
+
+    // no natural path found. searching wildcards
+    let rtn;
+    const _route = this._parseRoute(route);
+
+    // filter by url sections
+    this.wildcards.filter((wildcard) => {
+      return this._parseRoute(wildcard.name).length === _route.length; // filters by matching lengths first
+    }).forEach((wildcard) => {
+      const _wildcard = this._parseRoute(wildcard.name);
+      // iterating over each element in the wildcard. ie [user, :id, :subid]
+      _wildcard.forEach((element, index) => {
+        if (element.indexOf(':') !== 0) return false;
+        // replaces wildcards with actual values so they can be compared
+        const temp = _wildcard;
+        temp[index] = _route[index];
+        if (this.utils.compare(temp, _route)) rtn = wildcard;
+      });
+    });
+    return rtn;
+  }
+
+  _parseRoute(route) {
+    return route.substring(1).split('/');
   }
 }
 
