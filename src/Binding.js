@@ -43,6 +43,10 @@ export default class Binding {
   _setElementContent(element, value) {
     // allows multiple components
     if (value === undefined) return;
+    const filter = element.getAttribute('liaison-filter')
+    if (filter) {
+      value = window[filter](value);
+    }
     element.innerHTML = value;
     element.value = value;
   }
