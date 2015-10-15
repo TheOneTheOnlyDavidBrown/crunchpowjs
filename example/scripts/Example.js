@@ -31,11 +31,13 @@ export default class Example {
     // this.bind.user.name = user.get('name')
     user.set('address', user.upCase('my second address')); // should pass and postfix "!" to the address
 
-    user.save().then(() => {
-      console.log('then');
-    }).catch((error) => {
-      console.log('request failed', error);
-    });
+    user.save()
+      .then(() => {
+        console.log('then');
+      })
+      .catch((error) => {
+        console.log('request failed', error);
+      });
     user.update();
     user.fetch().then(() => {
       console.log('then');
