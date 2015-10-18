@@ -6,7 +6,7 @@ import ViewModel from './ViewModel';
 export default class Example {
   constructor(data) {
     this.bind = new Liaison(data);
-    console.log(this.bind);
+    // console.log(this.bind);
     this.binding = new Binding(this.bind);
     this.exampleBinding();
     this.exampleRouter();

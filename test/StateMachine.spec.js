@@ -2,7 +2,7 @@
 // Import modules
 let chai = require('chai'),
   path = require('path'),
-  expect = chai.expect,
+  // expect = chai.expect,
   StateMachine = require(path.join(__dirname, '..', 'src/StateMachine'));
 
 // Set up Chai matchers
@@ -19,7 +19,10 @@ describe('State Machine', () => {
       transitionableFrom: []
     }, {
       name: 'cash in',
-      transitionableFrom: ['start up']
+      transitionableFrom: ['start up'],
+      callback: () => {
+        stateMachine.dummy = 'dummy';
+      }
     }, {
       name: 'sell out',
       transitionableFrom: ['cash in']
@@ -27,28 +30,34 @@ describe('State Machine', () => {
       name: 'bro down',
       transitionableFrom: ['sell out', 'start up']
     }];
-    stateMachine.states = states;
+    stateMachine.create({
+      initial: 'start up',
+      states: states
+    });
   });
 
-  it('should be able to set all states', () => {
+  it('should be able to set all states with initial property', () => {
     stateMachine.states.should.eql(states);
-    stateMachine.state.should.eql(states[0]);
+    stateMachine.state.name.should.eql('start up');
+  });
+
+  it('should be able to set all states without initial property', () => {
+    stateMachine = new StateMachine();
+    stateMachine.create({
+      states: states
+    });
+    stateMachine.states.should.eql(states);
+    stateMachine.state.name.should.eql('start up');
   });
 
   it('should be able to transition to a specific (valid transition) state', () => {
     stateMachine.state = 'cash in';
-    stateMachine.state.should.eql({
-      name: 'cash in',
-      transitionableFrom: ['start up']
-    });
+    stateMachine.state.name.should.eql('cash in');
   });
 
   it('should be able to transition to a specific (valid transition) state skipping middle', () => {
     stateMachine.state = 'bro down';
-    stateMachine.state.should.eql({
-      name: 'bro down',
-      transitionableFrom: ['sell out', 'start up']
-    });
+    stateMachine.state.name.should.eql('bro down');
   });
 
   it('should not be able to transition to a specific (invalid transition) state', () => {
@@ -61,15 +70,25 @@ describe('State Machine', () => {
 
   it('should be able to transition to the "next" state', () => {
     stateMachine.next();
-    stateMachine.state.should.eql({
-      name: 'cash in',
-      transitionableFrom: ['start up']
-    });
+    stateMachine.state.name.should.eql('cash in');
 
     stateMachine.next();
-    stateMachine.state.should.eql({
-      name: 'sell out',
-      transitionableFrom: ['cash in']
-    });
+    stateMachine.state.name.should.eql('sell out');
+  });
+
+  it('should fire callback on transitioned to state', () => {
+    stateMachine.state = 'cash in';
+    stateMachine.dummy.should.eql('dummy');
+  });
+
+  it('should push a state', () => {
+    let newState = {
+      name: 'pushed state',
+      transitionableFrom: ['start up']
+    };
+    stateMachine.push(newState);
+    stateMachine.state = 'pushed state';
+
+    stateMachine.state.name.should.equal('pushed state');
   });
 });

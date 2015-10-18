@@ -10,6 +10,6 @@ export default class Example2 {
 
   anotherFunction() {
     // here you have access to this.data.user and this.data.programming_languages
-    console.log(this.bind.string);
+    // console.log(this.bind.string);
   }
 }

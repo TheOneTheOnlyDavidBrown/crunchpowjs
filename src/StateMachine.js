@@ -4,6 +4,7 @@
 //    name: 'sell out'
 //    transitionableFrom: ['cash in']
 // }
+// allow removing state
 
 export default class StateMachine {
   constructor() {
@@ -11,13 +12,31 @@ export default class StateMachine {
     this._state = '';
   }
 
+  create(stateMachine) {
+    this.states = stateMachine.states;
+    this._state = this.getState(stateMachine.initial) || stateMachine.states[0];
+  }
+
+  push(state) {
+    this._states.push(state);
+  }
+
   set states(states) {
     this._states = states;
-    this._state = states[0];
   }
 
   get states() {
     return this._states;
+  }
+
+  set state(toState) {
+    const toStateObj = this.getState(toState);
+    this._state = this._transition(this._state, toStateObj);
+    return this._state;
+  }
+
+  get state() {
+    return this._state;
   }
 
   getState(stateName) {
@@ -31,33 +50,33 @@ export default class StateMachine {
     return rtn;
   }
 
-  set state(toState) {
-    const toStateObj = this.getState(toState);
-    this._state = this._transition(this._state, toStateObj);
-    return this._state;
-  }
-
-  get state() {
-    return this._state;
-  }
-
   // this will work if your states are in the correct order
   next() {
-    let stateIndex;
+    const stateIndex = this._getStateIndex();
+    this.state = this._states[stateIndex + 1].name;
+  }
 
+  _getStateIndex() {
+    let rtn;
     this._states.forEach((state, index) => {
       if (state.name === this._state.name) {
-        stateIndex = index;
+        rtn = index;
       }
     });
+    return rtn;
+  }
 
-    this._state = this._states[stateIndex + 1];
+  _runCallback(state) {
+    if (state.callback) {
+      state.callback();
+    }
   }
 
   _transition(from, to) {
     let rtn = from;
     to.transitionableFrom.forEach((prop) => {
       if (prop === from.name) {
+        this._runCallback(to);
         rtn = to;
       }
     });
