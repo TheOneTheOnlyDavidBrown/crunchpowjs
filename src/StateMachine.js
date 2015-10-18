@@ -2,9 +2,10 @@
 // expect states to be formatted as such (assuming flow is "start up" -> "cash in" -> "sell out" -> "bro down")
 // {
 //    name: 'sell out'
-//    transitionableFrom: ['cash in']
+//    transitionableFrom: ['cash in'] /* must be array even if empty */
+//    callback: ()=>{/* callback is optional */}
 // }
-// allow removing state
+// todo: allow removing state
 
 export default class StateMachine {
   constructor(stateMachine) {
