@@ -75,11 +75,15 @@ export default class StateMachine {
 
   _transition(from, to) {
     let rtn = from;
-    to.transitionableFrom.forEach((prop) => {
-      if (prop === from.name) {
-        rtn = to;
-      }
-    });
+    if (to.transitionableFrom && to.transitionableFrom[0] === '*') {
+      rtn = to;
+    } else {
+      to.transitionableFrom.forEach((prop) => {
+        if (prop === from.name) {
+          rtn = to;
+        }
+      });
+    }
     return rtn;
   }
 }

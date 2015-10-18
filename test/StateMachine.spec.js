@@ -25,7 +25,7 @@ describe('State Machine', () => {
       }
     }, {
       name: 'sell out',
-      transitionableFrom: ['cash in']
+      transitionableFrom: ['*']
     }, {
       name: 'bro down',
       transitionableFrom: ['sell out', 'start up']
@@ -61,11 +61,9 @@ describe('State Machine', () => {
   });
 
   it('should not be able to transition to a specific (invalid transition) state', () => {
-    stateMachine.state = 'sell out';
-    stateMachine.state.should.eql({
-      name: 'start up',
-      transitionableFrom: []
-    });
+    stateMachine.state = 'cash in';
+    stateMachine.state = 'start up';
+    stateMachine.state.name.should.eql('cash in');
   });
 
   it('should be able to transition to the "next" state', () => {
@@ -90,5 +88,11 @@ describe('State Machine', () => {
     stateMachine.state = 'pushed state';
 
     stateMachine.state.name.should.equal('pushed state');
+  });
+
+  it('should be able to transition to a state with a wildcard', () => {
+    stateMachine.state = 'bro down';
+    stateMachine.state = 'sell out';
+    stateMachine.state.name.should.eql('sell out');
   });
 });
