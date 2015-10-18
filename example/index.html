@@ -19,6 +19,10 @@
   <div liaison-bind="single"></div>
   <br>
   <br>
+  <input type="text" liaison-bind="price" name="" value="" placeholder="" class="glow">
+  <div liaison-bind="price"></div>
+  <br>
+  <br>
   <input type="text" liaison-bind="user.name" name="" value="" placeholder="" class="glow">
   <input type="text" liaison-bind="user.name" name="" value="" placeholder="" class="glow">
   <div liaison-bind="user.name"></div>
@@ -40,6 +44,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   loadComponent('Example', {
     single: 'some text',
+    price: 8989,
     user: {
       name: 'Sherlock Holmes',
       address: '221b Baker Street'
