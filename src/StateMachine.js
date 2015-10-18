@@ -7,14 +7,9 @@
 // allow removing state
 
 export default class StateMachine {
-  constructor() {
-    this._states = [];
-    this._state = '';
-  }
-
-  create(stateMachine) {
+  constructor(stateMachine) {
     this.states = stateMachine.states;
-    this._state = this.getState(stateMachine.initial) || stateMachine.states[0];
+    this._state = this.findState(stateMachine.initial) || stateMachine.states[0];
   }
 
   push(state) {
@@ -30,7 +25,7 @@ export default class StateMachine {
   }
 
   set state(toState) {
-    const toStateObj = this.getState(toState);
+    const toStateObj = this.findState(toState);
     this._state = this._transition(this._state, toStateObj);
     this._runCallback();
     return this._state;
@@ -40,7 +35,7 @@ export default class StateMachine {
     return this._state;
   }
 
-  getState(stateName) {
+  findState(stateName) {
     let rtn = false;
     this._states.forEach((state) => {
       if (state.name === stateName) {

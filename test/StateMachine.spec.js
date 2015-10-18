@@ -13,7 +13,6 @@ describe('State Machine', () => {
   let states;
 
   beforeEach(() => {
-    stateMachine = new StateMachine();
     states = [{
       name: 'start up',
       transitionableFrom: []
@@ -30,7 +29,7 @@ describe('State Machine', () => {
       name: 'bro down',
       transitionableFrom: ['sell out', 'start up']
     }];
-    stateMachine.create({
+    stateMachine = new StateMachine({
       initial: 'start up',
       states: states
     });
@@ -42,8 +41,7 @@ describe('State Machine', () => {
   });
 
   it('should be able to set all states without initial property', () => {
-    stateMachine = new StateMachine();
-    stateMachine.create({
+    stateMachine = new StateMachine({
       states: states
     });
     stateMachine.states.should.eql(states);
