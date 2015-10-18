@@ -32,6 +32,7 @@ export default class StateMachine {
   set state(toState) {
     const toStateObj = this.getState(toState);
     this._state = this._transition(this._state, toStateObj);
+    this._runCallback();
     return this._state;
   }
 
@@ -66,9 +67,9 @@ export default class StateMachine {
     return rtn;
   }
 
-  _runCallback(state) {
-    if (state.callback) {
-      state.callback();
+  _runCallback() {
+    if (this._state.callback) {
+      this._state.callback();
     }
   }
 
@@ -76,7 +77,6 @@ export default class StateMachine {
     let rtn = from;
     to.transitionableFrom.forEach((prop) => {
       if (prop === from.name) {
-        this._runCallback(to);
         rtn = to;
       }
     });
