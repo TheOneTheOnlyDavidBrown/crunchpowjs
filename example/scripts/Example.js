@@ -69,6 +69,7 @@ export default class Example {
     // this.bind = viewmodel.get()
     // this.bind.user = user.get()
     this.binding.refresh(this.bind);
+    setTimeout(() => this.binding.refresh(this.bind), 2000);
   }
 
   exampleRouter() {

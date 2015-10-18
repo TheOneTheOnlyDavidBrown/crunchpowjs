@@ -21,6 +21,9 @@ window.router.state({
 }).state({
   name: '/',
   templateUrl: 'templates/list.html',
+}).state({
+  name: '/edit',
+  templateUrl: 'templates/edituserform.html',
 }).fallback({
   name: '/404',
   templateUrl: 'templates/404.html',
