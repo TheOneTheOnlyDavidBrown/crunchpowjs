@@ -1,5 +1,5 @@
 # CrunchPowJS
-Collection of ES6/2015 modules that allow for passing of view data to ES6/2015 modules,two way data binding, base model class for persistent data structures, and routing.
+Collection of ES6/2015 modules that allow for passing of view data to ES6/2015 modules,two way data binding, base model class for persistent data structures, client side routing, a state machine, and a few utility functions.
 
 Each module can be run independent of the rest of the modules. Data is stored within each module rather than the global namespace.
 
