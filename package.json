@@ -1,5 +1,5 @@
 {
-  "name": "liaisonjs",
+  "name": "crunchpowjs",
   "version": "1.0.0",
   "description": "ES6/2015 library that allows for passing of view data to ES6/2015 modules. This is an alternative to storing data in HTML data attributes that clutter the DOM. Also supports two way data binding.",
   "main": "Liaisonjs.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TheOneTheOnlyDavidBrown/liaisonjs.git"
+    "url": "https://github.com/TheOneTheOnlyDavidBrown/crunchpowjs.git"
   },
   "author": "David Brown",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TheOneTheOnlyDavidBrown/liaisonjs/issues"
+    "url": "https://github.com/TheOneTheOnlyDavidBrown/crunchpowjs/issues"
   },
-  "homepage": "https://github.com/TheOneTheOnlyDavidBrown/liaisonjs",
+  "homepage": "https://github.com/TheOneTheOnlyDavidBrown/crunchpowjs",
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-eslint": "^4.1.3",
